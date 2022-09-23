@@ -26,7 +26,7 @@ class Donar(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select * from donar""")
+            cursor.execute("""select * from donacion""")
             rows = cursor.fetchall()
             return jsonify(rows)
         except Exception as e:
@@ -35,6 +35,7 @@ class Donar(Resource):
             cursor.close()
             conn.close()
 
+class Donaciones(Resource):
     def post(self):
         try:
             conn = mysql.connect()
@@ -42,83 +43,28 @@ class Donar(Resource):
             _nombres = request.form['nombres']
             _apellidos = request.form['apellidos']
             _dni = request.form['dni']
-            _fecha_n = request.form['fecha_n']
-            _celular = request.form['celular']
-            _actividad = request.form['actividad']
-            insert_user_cmd = """INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) 
-                                VALUES(%s, %s, %s, %s, %s, %s)"""
-            cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _actividad))
+            _correo = request.form['correo']
+            _monto = request.form['monto']
+            insert_user_cmd = """INSERT INTO donacion(nombres, apellidos, dni, correo, monto) 
+                                VALUES(%s, %s, %s, %s, %s)"""
+            cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _correo, _monto))
             conn.commit()
-            response = jsonify(message='Voluntario inscrito exitosamente.', id=cursor.lastrowid)
+            response = jsonify(message='Donación inscrita exitosamente.', id=cursor.lastrowid)
             #response.data = cursor.lastrowid
             response.status_code = 200
         except Exception as e:
             print(e)
-            response = jsonify('Falló añadir el voluntario.')         
+            response = jsonify('Falló añadir la donación.')         
             response.status_code = 400 
         finally:
             cursor.close()
             conn.close()
-            return(response)
-
-
-#Get a user by id, update or delete user
-class Donante(Resource):
-    def get(self, v_id):
-        try:
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute('select * from voluntario where id = %s',v_id)
-            rows = cursor.fetchall()
-            return jsonify(rows)
-        except Exception as e:
-            print(e)
-        finally:
-            cursor.close()
-            conn.close()
-
-    def put(self, v_id):
-        try:
-            var = 0
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            _aceptado = request.form['aceptado']
-            if _aceptado == 'SI': var = 1
-            update_user_cmd = """update voluntario 
-                                 set aceptado=%s
-                                 where id=%s"""
-            cursor.execute(update_user_cmd, (var, v_id))
-            conn.commit()
-            response = jsonify('Voluntario actualizado exitosamente.')
-            response.status_code = 200
-        except Exception as e:
-            print(e)
-            response = jsonify('Falló en actualizar el voluntario.')         
-            response.status_code = 400
-        finally:
-            cursor.close()
-            conn.close()    
-            return(response)       
-
-    def delete(self, v_id):
-        try:
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute('delete from voluntario where id = %s', v_id)
-            conn.commit()
-            response = jsonify('Voluntario eliminado exitosamente.')
-            response.status_code = 200
-        except Exception as e:
-            print(e)
-            response = jsonify('Falló en eliminar el voluntario.')         
-            response.status_code = 400
-        finally:
-            cursor.close()
-            conn.close()    
-            return(response)       
+            return(response)     
 
 #API resource routes
 api.add_resource(Donar, '/donar', endpoint='donar')
+api.add_resource(Donaciones, '/donaciones', endpoint='donaciones')
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8002, debug=False)
