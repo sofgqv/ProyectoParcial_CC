@@ -105,7 +105,7 @@ class Voluntario(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute('delete from voluntarios where id = %s', v_id)
+            cursor.execute('delete from voluntario where id = %s', v_id)
             conn.commit()
             response = jsonify('Voluntario eliminado exitosamente.')
             response.status_code = 200
