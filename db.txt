@@ -1,0 +1,47 @@
+DROP DATABASE IF EXISTS llevame_pe;
+CREATE DATABASE llevame_pe CHARSET utf8mb4;
+USE llevame_pe;
+
+CREATE TABLE voluntario (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombres VARCHAR(50) NOT NULL,
+  apellidos VARCHAR(50) NOT NULL,
+  dni VARCHAR(8) NOT NULL,
+  fecha_n DATE NOT NULL,
+  celular VARCHAR(9) NOT NULL,
+  actividad VARCHAR(100) NOT NULL,
+  aceptado BOOL NOT NULL,
+PRIMARY KEY (`id`));
+
+CREATE TABLE donacion (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombres VARCHAR(50) NOT NULL,
+  apellidos VARCHAR(50) NOT NULL,
+  dni VARCHAR(8) NOT NULL,
+  correo VARCHAR(100) NOT NULL,
+  monto FLOAT UNSIGNED NOT NULL,
+PRIMARY KEY (`id`));
+
+CREATE TABLE mascota (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  raza VARCHAR(50) NOT NULL,
+  fecha_n VARCHAR(50) NOT NULL,
+  sexo VARCHAR(10) NOT NULL,
+  size VARCHAR(50) NOT NULL,
+  estado_adop BOOL NOT NULL,
+PRIMARY KEY (`id`));
+
+CREATE TABLE adoptar (
+  id INT UNSIGNED AUTO_INCREMENT,
+  nombres VARCHAR(100) NOT NULL,
+  apellidos VARCHAR(100) NOT NULL,
+  fecha_n DATE NOT NULL,
+  celular VARCHAR(9) NOT NULL,
+  correo VARCHAR(100) NOT NULL,
+  mascota_id INT NOT NULL,
+FOREIGN KEY (mascota_id) REFERENCES mascota(id),
+aceptado BOOL NOT NULL,
+PRIMARY KEY (`id`));
+
+commit;

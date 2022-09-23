@@ -1,0 +1,12 @@
+pip3 install Flask
+pip3 install Flask-RESTful
+pip3 install Flask-MySQL
+
+---Dockerfile(s)---
+FROM python:3-slim
+WORKDIR /programas/api-<nombre>
+RUN pip3 install flask
+RUN pip3 install flask-mysql
+RUN pip3 install Flask-RESTful
+COPY . .
+CMD [ "python3", "./app.py" ]
