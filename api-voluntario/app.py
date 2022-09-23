@@ -27,7 +27,7 @@ class SerVoluntario(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select * from otg_demo_users""")
+            cursor.execute("""select * from voluntario""")
             rows = cursor.fetchall()
             return jsonify(rows)
         except Exception as e:
