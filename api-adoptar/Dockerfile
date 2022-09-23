@@ -4,4 +4,4 @@ RUN pip3 install flask
 RUN pip3 install flask-mysql
 RUN pip3 install Flask-RESTful
 COPY . .
-CMD [ "python3", <"./app.py"> ]
+CMD [ "python3", "./app.py" ]
