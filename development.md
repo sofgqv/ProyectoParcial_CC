@@ -8,12 +8,12 @@ docker run -d --rm --name mysql_c -e MYSQL_ROOT_PASSWORD=utec -p 8005:3306 -v my
 
 docker run -d --rm --name adminer_c -p 8080:8080 adminer
 
-## ENTRAR A adminer
+## Entrar a adminer
 http://54.204.79.149:8080/
 
 # EN AMBIENTE DE DESARROLLO
 
-### API 2
+## API 1
 cd ubuntu/proyectoparcial/api-voluntario
 docker build -t api-voluntario .
 
@@ -24,7 +24,7 @@ docker logout
 
 docker run -d --rm --name api-voluntario_c -p 8001:8001 api-voluntario
 
-### API 2
+## API 2
 cd ubuntu/proyectoparcial/api-donar
 docker build -t api-donar .
 
@@ -35,7 +35,7 @@ docker logout
 
 docker run -d --rm --name api-donar_c -p 8002:8002 api-donar
 
-### API 3
+## API 3
 cd ubuntu/proyectoparcial/api-adoptar
 
 docker build -t api-adoptar .
