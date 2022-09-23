@@ -10,7 +10,7 @@ CREATE TABLE voluntario (
   fecha_n DATE NOT NULL,
   celular VARCHAR(9) NOT NULL,
   actividad VARCHAR(100) NOT NULL,
-  aceptado BOOL NOT NULL,
+  aceptado BOOL NOT NULL DEFAULT FALSE,
 PRIMARY KEY (`id`));
 
 CREATE TABLE donacion (
@@ -29,19 +29,81 @@ CREATE TABLE mascota (
   fecha_n VARCHAR(50) NOT NULL,
   sexo VARCHAR(10) NOT NULL,
   size VARCHAR(50) NOT NULL,
-  estado_adop BOOL NOT NULL,
+  estado_adop BOOL NOT NULL DEFAULT FALSE,
 PRIMARY KEY (`id`));
 
 CREATE TABLE adoptar (
   id INT UNSIGNED AUTO_INCREMENT,
   nombres VARCHAR(100) NOT NULL,
   apellidos VARCHAR(100) NOT NULL,
+  dni VARCHAR(8) NOT NULL,
   fecha_n DATE NOT NULL,
   celular VARCHAR(9) NOT NULL,
   correo VARCHAR(100) NOT NULL,
   mascota_id INT NOT NULL,
+  aceptado BOOL NOT NULL DEFAULT FALSE,
 FOREIGN KEY (mascota_id) REFERENCES mascota(id),
-aceptado BOOL NOT NULL,
 PRIMARY KEY (`id`));
+
+commit;
+
+
+
+
+
+USE llevame_pe;
+
+DELIMITER $$
+CREATE TRIGGER estado_adop_actualizar AFTER
+UPDATE ON
+ adoptar FOR EACH ROW
+BEGIN
+UPDATE
+ mascota
+SET
+ estado_adop = NEW.aceptado
+WHERE
+ id = NEW.mascota_id;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER estado_adop_nuevo AFTER
+INSERT ON
+ adoptar FOR EACH ROW
+BEGIN
+UPDATE
+ mascota
+SET
+ estado_adop = NEW.aceptado
+WHERE
+ id = NEW.mascota_id;
+END $$
+DELIMITER ;
+
+commit;
+
+
+
+
+
+USE llevame_pe;
+
+INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) VALUES('Valeria Nicole', 'Espinoza Tarazona', '72182282', '2004-04-23', '981325831', 'embajadores');
+INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) VALUES('Sofía Valeria', 'García Quintana', '75210256', '2004-03-03', '949715915', 'redes sociales');
+INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) VALUES('Miguel Ignacio', 'de las Casas Diezcanseco', '18011030', '1966-06-06', '997926162', 'entrega de donaciones');
+
+commit;
+
+
+
+
+USE llevame_pe;
+
+INSERT INTO mascota(nombre, raza, fecha_n, sexo, size) VALUES('Clion', 'Angora turco','Marzo 2022','macho','chico');
+INSERT INTO mascota(nombre, raza, fecha_n, sexo, size) VALUES('Fizzy', 'Shitzu','Marzo 2017','hembra','chico');
+INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) VALUES('Geraldo', 'Colchado', '41135670', '1980-11-08', '943495627', 'gcolchado@utec.edu.pe', 1);
+INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id, aceptado) VALUES('Valentín', 'Quezada', '70948865', '2002-02-14', '996204971', 'hector.quezada@utec.edu.pe', 2, true);
+UPDATE adoptar SET aceptado = TRUE WHERE mascota_id=1; 
 
 commit;
