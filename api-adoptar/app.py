@@ -137,7 +137,7 @@ class Mascota(Resource):
             _sexo = request.form['sexo']
             _size = request.form['size']
             update_pet_cmd = """update mascota 
-                                 set nombre=%s, raza=%s, fecha_n=%s, raza=%s, fecha_n=%s, sexo=%s, size=%s
+                                 set nombre=%s, raza=%s, fecha_n=%s, sexo=%s, size=%s
                                  where id=%s"""
             cursor.execute(update_pet_cmd, (_nombre, _raza, _fecha_n, _sexo, _size, m_id))
             conn.commit()
@@ -171,7 +171,7 @@ class Mascota(Resource):
 
 #API resource routes
 api.add_resource(Adoptar, '/adoptar', endpoint='adoptar')
-api.add_resource(Mascota, '/mascota/<int:user_id>', endpoint='mascota')
+api.add_resource(Mascota, '/mascota/<int:m_id>', endpoint='mascota')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8003, debug=False)
