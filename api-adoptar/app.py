@@ -129,7 +129,7 @@ class MascotasAdd(Resource):
             cursor.close()
             conn.close()
             return(response)
-            
+
 class Mascota(Resource):
     def get(self, m_id):
         try:
@@ -145,7 +145,7 @@ class Mascota(Resource):
             conn.close()
 
 
-    def put(self, m_id):
+    def patch(self, m_id):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -154,10 +154,36 @@ class Mascota(Resource):
             _fecha_n = request.form['fecha_n']
             _sexo = request.form['sexo']
             _size = request.form['size']
-            update_pet_cmd = """update mascota 
-                                 set nombre=%s, raza=%s, fecha_n=%s, sexo=%s, size=%s
+
+            if (_nombre is not None): 
+                update_pet_cmd = """update mascota 
+                                 set nombre=%s
                                  where id=%s"""
-            cursor.execute(update_pet_cmd, (_nombre, _raza, _fecha_n, _sexo, _size, m_id))
+                cursor.execute(update_pet_cmd, (_nombre, m_id))
+
+            if (_raza is not None): 
+                update_pet_cmd = """update mascota 
+                                 set raza=%s
+                                 where id=%s"""
+                cursor.execute(update_pet_cmd, (_raza, m_id))
+
+            if (_fecha_n is not None): 
+                update_pet_cmd = """update mascota 
+                                 set fecha_n=%s
+                                 where id=%s"""
+                cursor.execute(update_pet_cmd, (_fecha_n, m_id))
+
+            if (_sexo is not None): 
+                update_pet_cmd = """update mascota 
+                                 set sexo=%s
+                                 where id=%s"""
+                cursor.execute(update_pet_cmd, (_sexo, m_id))
+
+            if (_size is not None): 
+                update_pet_cmd = """update mascota 
+                                 set size=%s
+                                 where id=%s"""
+                cursor.execute(update_pet_cmd, (_size, m_id))
             conn.commit()
             response = jsonify('Mascota actualizada exitosamente.')
             response.status_code = 200
@@ -188,7 +214,7 @@ class Mascota(Resource):
             return(response)       
 
 #API resource routes
-api.add_resource(Adoptar, '/adoptarestado/<int:a_id>', endpoint='adoptarestado')
+api.add_resource(AdoptarEstado, '/adoptarestado/<int:a_id>', endpoint='adoptarestado')
 api.add_resource(Adoptar, '/adoptar', endpoint='adoptar')
 api.add_resource(Mascota, '/mascota/<int:m_id>', endpoint='mascota')
 api.add_resource(Mascotas, '/mascotas', endpoint='mascotas')
