@@ -72,7 +72,7 @@ class Adoptar(Resource):
             _correo = request.form['correo']
             _mascota_id = request.form['mascota_id']
             insert_user_cmd = """INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) 
-                                VALUES(%s, %s, %s)"""
+                                VALUES(%s, %s, %s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _correo, _mascota_id))
             conn.commit()
             response = jsonify(message='Peticion de adopcion creada con exito.', id=cursor.lastrowid)
@@ -88,8 +88,23 @@ class Adoptar(Resource):
             return(response)
             
 #Get a user by id, update or delete user
+
+class Mascotas(Resource):
+    def get_mascotas(self):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute('select * from mascota')
+            rows = cursor.fetchall()
+            return jsonify(rows)
+        except Exception as e:
+            print(e)
+        finally:
+            cursor.close()
+            conn.close()
+            
 class Mascota(Resource):
-    def get(self, m_id):
+    def get_mascota(self, m_id):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -172,6 +187,7 @@ class Mascota(Resource):
 #API resource routes
 api.add_resource(Adoptar, '/adoptar', endpoint='adoptar')
 api.add_resource(Mascota, '/mascota/<int:m_id>', endpoint='mascota')
+api.add_resource(Mascotas, '/mascotas', endpoint='mascotas')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8003, debug=False)
