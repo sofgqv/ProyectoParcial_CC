@@ -58,21 +58,27 @@ docker logout
 
 docker run -d --rm --name api-adoptar_c -p 8003:8003 api-adoptar
 
-## Testing Postman
+## Testing Postman (colocar el ID, luego lo de abajo)
 
-IP del ambiente de desarrollo:8001/servoluntarios
+:8001/servoluntarios
 
-IP del ambiente de desarrollo:8001/voluntario/id
-
-
-IP del ambiente de desarrollo:8002/donar
-
-IP del ambiente de desarrollo:8002/donaciones
+:8001/voluntario/id
 
 
-IP del ambiente de desarrollo:8003/adoptar
+:8002/donar
 
-IP del ambiente de desarrollo:8003/mascota/id
+:8002/donaciones
+
+
+:8003/adoptarestado/a_id
+
+:8003/adoptar
+
+:8003/mascota/id
+
+:8003/mascotas
+
+:8003/mascotasadd
 
 # Correr en ambientes de producción
 
