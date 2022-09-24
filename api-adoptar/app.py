@@ -36,29 +36,6 @@ class Adoptar(Resource):
             cursor.close()
             conn.close()
 
-    def put(self, v_id):
-        try:
-            var = 0
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            _aceptado = request.form['aceptado']
-            if _aceptado == 'SI': var = 1
-            update_user_cmd = """update adoptar 
-                                 set aceptado=%s
-                                 where id=%s"""
-            cursor.execute(update_user_cmd, (var, v_id))
-            conn.commit()
-            response = jsonify('Peticion de adopcion actualizada exitosamente.')
-            response.status_code = 200
-        except Exception as e:
-            print(e)
-            response = jsonify('Falló en actualizar la petción de adopción.')         
-            response.status_code = 400
-        finally:
-            cursor.close()
-            conn.close()    
-            return(response) 
-
 
     def post(self):
         try:
@@ -86,7 +63,31 @@ class Adoptar(Resource):
             cursor.close()
             conn.close()
             return(response)
-            
+
+
+class AdoptarEstado(Resource):
+    def put(self, a_id):
+        try:
+            var = 0
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            _aceptado = request.form['aceptado']
+            if _aceptado == 'SI': var = 1
+            update_user_cmd = """update adoptar 
+                                 set aceptado=%s
+                                 where id=%s"""
+            cursor.execute(update_user_cmd, (var, a_id))
+            conn.commit()
+            response = jsonify('Peticion de adopcion actualizada exitosamente.')
+            response.status_code = 200
+        except Exception as e:
+            print(e)
+            response = jsonify('Falló en actualizar la petción de adopción.')         
+            response.status_code = 400
+        finally:
+            cursor.close()
+            conn.close()    
+            return(response)        
 #Get a user by id, update or delete user
 
 class Mascotas(Resource):
@@ -103,20 +104,7 @@ class Mascotas(Resource):
             cursor.close()
             conn.close()
             
-class Mascota(Resource):
-    def get(self, m_id):
-        try:
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute('select * from mascota where id = %s',m_id)
-            rows = cursor.fetchall()
-            return jsonify(rows)
-        except Exception as e:
-            print(e)
-        finally:
-            cursor.close()
-            conn.close()
-
+class MascotasAdd(Resource):
     def post(self):
         try:
             conn = mysql.connect()
@@ -141,6 +129,21 @@ class Mascota(Resource):
             cursor.close()
             conn.close()
             return(response)
+            
+class Mascota(Resource):
+    def get(self, m_id):
+        try:
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            cursor.execute('select * from mascota where id = %s',m_id)
+            rows = cursor.fetchall()
+            return jsonify(rows)
+        except Exception as e:
+            print(e)
+        finally:
+            cursor.close()
+            conn.close()
+
 
     def put(self, m_id):
         try:
@@ -185,9 +188,11 @@ class Mascota(Resource):
             return(response)       
 
 #API resource routes
+api.add_resource(Adoptar, '/adoptarestado/<int:a_id>', endpoint='adoptarestado')
 api.add_resource(Adoptar, '/adoptar', endpoint='adoptar')
 api.add_resource(Mascota, '/mascota/<int:m_id>', endpoint='mascota')
 api.add_resource(Mascotas, '/mascotas', endpoint='mascotas')
+api.add_resource(MascotasAdd, '/mascotasadd', endpoint='mascotasadd')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8003, debug=False)
