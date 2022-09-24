@@ -90,7 +90,7 @@ class Adoptar(Resource):
 #Get a user by id, update or delete user
 
 class Mascotas(Resource):
-    def get_mascotas(self):
+    def mascotas(self):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -104,7 +104,7 @@ class Mascotas(Resource):
             conn.close()
             
 class Mascota(Resource):
-    def get_mascota(self, m_id):
+    def mascota(self, m_id):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
