@@ -15,6 +15,7 @@ def generate_hash(plain_password, password_salt):
     )
     return password_hash.hex()
 
+email = 'admin@llevame.com.pe'
 password = '#ClaveSecreta123'
 password_salt = generate_salt()
 password_hash = generate_hash(password, password_salt)
