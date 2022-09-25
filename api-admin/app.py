@@ -1,10 +1,7 @@
-from functools import wraps
-from lib2to3.pgen2 import token
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api
 import jwt
-import os
 from hashlib import pbkdf2_hmac
 
 #Create an instance of Flask
@@ -74,34 +71,7 @@ def validate_user(email, password):
     else:
         return False
 
-def token_required(f):
-    @wraps(f)
-    def decorator(*args, **kwargs):
-        token = None
-        if 'Authorization' in request.headers:
-            token = request.headers['Authorization']
-        try:
-            body = jwt.decode(token, "secret", algorithms=["HS256"])
-            current_user = body["id"]
-        except:
-            return jsonify({'Token invalido.'})
-        return f(current_user, *args, **kwargs)
-    return decorator
-
 class Admin(Resource):
-    def get(self):
-        try:
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute('select * from users')
-            rows = cursor.fetchall()
-            return jsonify(rows)
-        except Exception as e:
-            print(e)
-        finally:
-            cursor.close()
-            conn.close()
-    
     def post(self):
         try:
             user_email = request.form["email"]
