@@ -1,3 +1,5 @@
+from functools import wraps
+from lib2to3.pgen2 import token
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api
@@ -72,6 +74,20 @@ def validate_user(email, password):
     else:
         return False
 
+def token_required(f):
+    @wraps(f)
+    def decorator(*args, **kwargs):
+        token = None
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization']
+        try:
+            body = jwt.decode(token, "secret", algorithms=["HS256"])
+            current_user = body["id"]
+        except:
+            return jsonify({'Token invalido.'})
+        return f(current_user, *args, **kwargs)
+    return decorator
+
 class Admin(Resource):
     def get(self):
         try:
@@ -105,24 +121,7 @@ class Admin(Resource):
         finally: 
             return(response)
 
-class CheckToken(Resource):
-    def post(self):
-        try:
-            jwt_token = request.form["token"]
-            body = jwt.decode(jwt_token, "secret", algorithms=["HS256"])
-            if body:
-                response = jsonify('Se inició la sesión correctamente.')
-                response.status_code = 200
-        except Exception as e:
-            print(e)
-            response = jsonify('Falló el inicio de sesión.')         
-            response.status_code = 400
-        finally: 
-            return(response)
-
 api.add_resource(Admin, '/admin', endpoint='admin')
-api.add_resource(CheckToken, '/token', endpoint='token')
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8004, debug=False)
