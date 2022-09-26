@@ -1,4 +1,3 @@
-<!--
 <template>
   <div>
     <input type="text" v-model="postBody" @change="postPost()" />
@@ -36,4 +35,3 @@ export default {
   }
 }
 </script>
--->

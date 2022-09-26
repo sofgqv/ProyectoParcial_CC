@@ -2,15 +2,14 @@
 # CORRER BASE DE DATOS
 
 ## EN CMD:
-ssh -i ./.ssh/labsuser.pem ubuntu@54.204.79.149
+ssh -i ./.ssh/labsuser.pem ubuntu@3.230.38.83
 
 docker run -d --rm --name mysql_c -e MYSQL_ROOT_PASSWORD=utec -p 8005:3306 -v mysql_data:/var/lib/mysql mysql:8.0
 
 docker run -d --rm --name adminer_c -p 8080:8080 adminer
 
 ## Entrar a adminer
-http://54.204.79.149:8080/
-
+http://3.230.38.83:8080/
 # EN AMBIENTE DE DESARROLLO
 
 ## API 1

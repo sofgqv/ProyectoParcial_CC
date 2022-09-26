@@ -1,11 +1,9 @@
-<!--
-  <template>
+<template>
   <div>
-    <ul v-if="donaciones && donaciones.length">
-      <li v-for="donacion of donaciones">
-        <p><strong>{{donacion.monto}}</strong></p>
-        <p>{{donacion.nombres}}</p>
-        <p>{{donacion.apellidos}}</p>
+    <ul v-if="posts && posts.length">
+      <li v-for="post of posts">
+        <p><strong>{{post.title}}</strong></p>
+        <p>{{post.body}}</p>
       </li>
     </ul>
 
@@ -21,19 +19,19 @@
 import axios from 'axios';
 
 export default {
-  name : 'ApiVerDonaciones',
   data() {
     return {
-      donaciones: [],
+      posts: [],
       errors: []
     }
   },
 
   // Fetches posts when the component is created.
   created() {
-    axios.get(``)
+    axios.get(`http://jsonplaceholder.typicode.com/posts`)
     .then(response => {
-      this.donaciones = response.data
+      // JSON responses are automatically parsed.
+      this.posts = response.data
     })
     .catch(e => {
       this.errors.push(e)
@@ -41,4 +39,3 @@ export default {
   }
 }
 </script>
--->
