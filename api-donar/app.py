@@ -26,7 +26,7 @@ class Donar(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select * from donacion""")
+            cursor.execute("""SELECT JSON_ARRAYAGG(JSON_OBJECT('nombres', nombres, 'apellidos', apellidos, 'dni', dni, 'correo', correo, 'monto', monto) from donacion""")
             rows = cursor.fetchall()
             return jsonify(rows)
         except Exception as e:
