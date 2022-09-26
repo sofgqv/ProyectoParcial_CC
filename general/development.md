@@ -107,3 +107,28 @@ docker run -d --rm --name api-donar_c -p 8002:8002 sofiagarcia/api-donar
 docker run -d --rm --name api-adoptar_c -p 8003:8003 valdlaw/api-adoptar
 
 docker run -d --rm --name api-admin_c -p 8004:8004 sofiagarcia/api-admin
+
+# Balanceador de carga
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8001/servoluntarios
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8001/voluntario/id
+
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8002/donar
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8002/donaciones
+
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/adoptarestado/a_id
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/adoptar
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascota/id
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascotas
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascotasadd
+
+
+lb-prod-632583897.us-east-1.elb.amazonaws.com:8004/admin

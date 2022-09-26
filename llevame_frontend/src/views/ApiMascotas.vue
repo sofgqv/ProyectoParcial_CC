@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ul v-if="posts && posts.length">
-      <li v-for="post of posts" :key="post">
-        <p><strong>{{post.title}}</strong></p>
-        <p>{{post.body}}</p>
+    <ul v-if="mascotas">
+      <li v-for="mascota of mascotas" :key="mascota">
+        <p><strong>{{mascota.title}}</strong></p>
+        <p>{{mascota.body}}</p>
       </li>
     </ul>
 
@@ -21,17 +21,17 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      posts: [],
+      mascotas: [],
       errors: []
     }
   },
 
   // Fetches posts when the component is created.
   created() {
-    axios.get(`http://jsonplaceholder.typicode.com/posts`)
+    axios.get(``)
     .then(response => {
       // JSON responses are automatically parsed.
-      this.posts = response.data
+      this.mascotas = response.data
     })
     .catch(e => {
       this.errors.push(e)

@@ -34,6 +34,26 @@ const routes = [
         /* webpackChunkName: "SignUp" */ "../views/ApiAdopciones.vue"
       ),
   },
+  {
+    path: "/donar",
+    name: "ApiDonar",
+    //meta: { ifAuth: true },
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiDonar.vue"
+      ),
+  },
+  {
+    path: "/ver-donaciones",
+    name: "ApiVerDonaciones",
+    //meta: { ifAuth: true },
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiVerDonaciones.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

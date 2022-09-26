@@ -45,6 +45,12 @@ CREATE TABLE adoptar (
 FOREIGN KEY (mascota_id) REFERENCES mascota(id),
 PRIMARY KEY (`id`));
 
+CREATE TABLE users (
+  id INT NOT NULL AUTO_INCREMENT, 
+  email VARCHAR(255) NOT NULL, 
+  password_salt VARCHAR(255) NOT NULL, 
+  password_hash VARCHAR(255) NOT NULL, PRIMARY KEY (id), UNIQUE (email));
+
 commit;
 
 
@@ -93,17 +99,12 @@ INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) VAL
 INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) VALUES('Sofía Valeria', 'García Quintana', '75210256', '2004-03-03', '949715915', 'redes sociales');
 INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) VALUES('Miguel Ignacio', 'de las Casas Diezcanseco', '18011030', '1966-06-06', '997926162', 'entrega de donaciones');
 
-commit;
-
-
-
-
-USE llevame_pe;
-
 INSERT INTO mascota(nombre, raza, fecha_n, sexo, size) VALUES('Clion', 'Angora turco','Marzo 2022','macho','chico');
 INSERT INTO mascota(nombre, raza, fecha_n, sexo, size) VALUES('Fizzy', 'Shitzu','Marzo 2017','hembra','chico');
 INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) VALUES('Geraldo', 'Colchado', '41135670', '1980-11-08', '943495627', 'gcolchado@utec.edu.pe', 1);
 INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id, aceptado) VALUES('Valentín', 'Quezada', '70948865', '2002-02-14', '996204971', 'hector.quezada@utec.edu.pe', 2, true);
 UPDATE adoptar SET aceptado = TRUE WHERE mascota_id=1; 
+
+INSERT INTO users(email, password_hash, password_salt) VALUES('admin@llevame.com.pe', 'e0976cd4d1cc5969beec759afa102cde84c1e6fd4da31423d696d711afe795b1', 'e863ec59f117441ab9fabd15ac3a873a');
 
 commit;
