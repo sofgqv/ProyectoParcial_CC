@@ -106,5 +106,5 @@ INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_i
 UPDATE adoptar SET aceptado = TRUE WHERE mascota_id=1; 
 
 INSERT INTO users(email, password_hash, password_salt) VALUES('admin@llevame.com.pe', 'e0976cd4d1cc5969beec759afa102cde84c1e6fd4da31423d696d711afe795b1', 'e863ec59f117441ab9fabd15ac3a873a');
-
+INSERT INTO donacion(nombres, apellidos, dni, correo, monto) VALUES('Fabianna', 'Guidotti Pacheco', '68371122', 'fabianna.guidotti@utec.edu.pe', 10)
 commit;

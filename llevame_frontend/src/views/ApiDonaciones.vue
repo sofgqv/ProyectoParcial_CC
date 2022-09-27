@@ -103,7 +103,7 @@
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*'}
                     }
-                    axios.post("http://52.90.126.23:8002/donaciones", 
+                    axios.post("http://54.82.45.96:8002/donaciones", 
                         { nombres : this.nombres, apellidos : this.apellidos, dni : this.dni, correo : this.correo, monto : this.monto}, config
                     )
                     .then(res => {
@@ -128,7 +128,7 @@
   
             getDonacion(){
                 axios({
-                  url: 'http://52.90.126.23:8002/donar',
+                  url: 'http://54.82.45.96:8002/donar',
                   method: 'get'
                 })
                 .then(res => {
