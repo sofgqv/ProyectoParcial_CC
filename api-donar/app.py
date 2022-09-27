@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api
 
@@ -20,15 +21,21 @@ app.config['MYSQL_DATABASE_PORT'] = 8005
 #Initialize the MySQL extension
 mysql.init_app(app)
 
+# enable CORS
+CORS(app, resources={r'/*': {'origins': '*'}})
+
 #Get All Users, or Create a new user
 class Donar(Resource):
     def get(self):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""SELECT JSON_ARRAYAGG(JSON_OBJECT('nombres', nombres, 'apellidos', apellidos, 'dni', dni, 'correo', correo, 'monto', monto) from donacion""")
-            rows = cursor.fetchall()
-            return jsonify(rows)
+            cursor.execute("""select * from donacion""")
+            donaciones = cursor.fetchall()
+            return jsonify({
+            'success' : True,
+            'donaciones' : donaciones
+        })
         except Exception as e:
             print(e)
         finally:
@@ -49,13 +56,11 @@ class Donaciones(Resource):
                                 VALUES(%s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _correo, _monto))
             conn.commit()
-            response = jsonify(message='Donación inscrita exitosamente.', id=cursor.lastrowid)
+            response = jsonify(success=True, message='Donación inscrita exitosamente.', id=cursor.lastrowid, status_code=200)
             #response.data = cursor.lastrowid
-            response.status_code = 200
         except Exception as e:
             print(e)
-            response = jsonify('Falló añadir la donación.')         
-            response.status_code = 400 
+            response = jsonify(message = 'Falló añadir la donación.', status_code = 400)
         finally:
             cursor.close()
             conn.close()

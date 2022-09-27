@@ -35,23 +35,13 @@ const routes = [
       ),
   },
   {
-    path: "/donar",
-    name: "ApiDonar",
+    path: "/donaciones",
+    name: "ApiDonaciones",
     //meta: { ifAuth: true },
     props: true,
     component: () =>
       import(
-        /* webpackChunkName: "SignUp" */ "../views/ApiDonar.vue"
-      ),
-  },
-  {
-    path: "/ver-donaciones",
-    name: "ApiVerDonaciones",
-    //meta: { ifAuth: true },
-    props: true,
-    component: () =>
-      import(
-        /* webpackChunkName: "SignUp" */ "../views/ApiVerDonaciones.vue"
+        /* webpackChunkName: "SignUp" */ "../views/ApiDonaciones.vue"
       ),
   },
 ];
