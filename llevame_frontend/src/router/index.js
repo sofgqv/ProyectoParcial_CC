@@ -44,6 +44,15 @@ const routes = [
         /* webpackChunkName: "SignUp" */ "../views/ApiDonaciones.vue"
       ),
   },
+  {
+    path: "/donaciones",
+    name: "ApiSerVoluntario",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiSerVoluntario.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

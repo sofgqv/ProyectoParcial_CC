@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api
 
@@ -17,6 +18,8 @@ app.config['MYSQL_DATABASE_PASSWORD'] = 'utec'
 app.config['MYSQL_DATABASE_DB'] = 'llevame_pe' #nombre base de datos
 app.config['MYSQL_DATABASE_HOST'] = '3.230.38.83'
 app.config['MYSQL_DATABASE_PORT'] = 8005
+
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 #Initialize the MySQL extension
 mysql.init_app(app)

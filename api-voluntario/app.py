@@ -1,6 +1,6 @@
-import json
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
+from flask_cors import CORS
 from flask_restful import Resource, Api
 
 #Create an instance of Flask
@@ -19,6 +19,8 @@ app.config['MYSQL_DATABASE_DB'] = 'llevame_pe' #nombre base de datos
 app.config['MYSQL_DATABASE_HOST'] = '3.230.38.83'
 app.config['MYSQL_DATABASE_PORT'] = 8005
 
+CORS(app, resources={r'/*': {'origins': '*'}})
+
 #Initialize the MySQL extension
 mysql.init_app(app)
 
@@ -28,20 +30,9 @@ class SerVoluntario(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""SELECT id, nombres, apellidos, dni, fecha_n, celular, actividad, aceptado FROM voluntario""")
+            cursor.execute("""SELECT * FROM voluntario""")
             res = cursor.fetchall()
-            dict = {}
-            for element in res:
-                dict_e = {}
-                dict_e['nombres'] = element[1]
-                dict_e['apellidos'] = element[0]
-                dict_e['dni'] = element[3]
-                dict_e['fecha_n'] = element[4]
-                dict_e['celular'] = element[5]
-                dict_e['actividad'] = element[6]
-                dict_e['aceptado'] = element[7]
-                dict[element[0]] = dict_e
-            return json.dumps(dict, indent=1)
+            return jsonify(res)
             #return jsonify(rows)
         except Exception as e:
             print(e)
