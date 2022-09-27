@@ -35,7 +35,7 @@ docker tag api-donar valdlaw/api-donar
 
 docker push valdlaw/api-donar
 
-docker run -d --rm --name api-donar_c -p 8002:8002 api-donar}
+docker run -d --rm --name api-donar_c -p 8002:8002 api-donar
 
 ## API 3
 
