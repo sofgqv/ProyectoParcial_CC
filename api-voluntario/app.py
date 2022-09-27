@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from flask_restful import Resource, Api
@@ -27,9 +28,21 @@ class SerVoluntario(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select * from voluntario""")
-            rows = cursor.fetchall()
-            return jsonify(rows)
+            cursor.execute("""SELECT id, nombres, apellidos, dni, fecha_n, celular, actividad, aceptado FROM voluntario""")
+            res = cursor.fetchall()
+            dict = {}
+            for element in res:
+                dict_e = {}
+                dict_e['nombres'] = element[1]
+                dict_e['apellidos'] = element[0]
+                dict_e['dni'] = element[3]
+                dict_e['fecha_n'] = element[4]
+                dict_e['celular'] = element[5]
+                dict_e['actividad'] = element[6]
+                dict_e['aceptado'] = element[7]
+                dict[element[0]] = dict_e
+            return json.dumps(dict, indent=1)
+            #return jsonify(rows)
         except Exception as e:
             print(e)
         finally:

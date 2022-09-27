@@ -12,50 +12,43 @@ docker run -d --rm --name adminer_c -p 8080:8080 adminer
 http://3.230.38.83:8080/
 # EN AMBIENTE DE DESARROLLO
 
+docker login -u valdlaw
+
 ## API 1
 cd proyectoparcial/api-voluntario
 
 docker build -t api-voluntario .
 
-docker login -u sofiagarcia
+docker tag api-voluntario valdlaw/api-voluntario
 
-docker tag api-voluntario sofiagarcia/api-voluntario
-
-docker push sofiagarcia/api-voluntario
-
-docker logout
+docker push valdlaw/api-voluntario
 
 docker run -d --rm --name api-voluntario_c -p 8001:8001 api-voluntario
 
 ## API 2
+
 cd proyectoparcial/api-donar
 
 docker build -t api-donar .
 
-docker login -u sofiagarcia 
+docker tag api-donar valdlaw/api-donar
 
-docker tag api-donar sofiagarcia/api-donar
+docker push valdlaw/api-donar
 
-docker push sofiagarcia/api-donar
-
-docker logout
-
-docker run -d --rm --name api-donar_c -p 8002:8002 api-donar
+docker run -d --rm --name api-donar_c -p 8002:8002 api-donar}
 
 ## API 3
+
 cd proyectoparcial/api-adoptar
 
 docker build -t api-adoptar .
-
-docker login -u valdlaw 
 
 docker tag api-adoptar valdlaw/api-adoptar
 
 docker push valdlaw/api-adoptar
 
-docker logout
+docker run -d --rm --name api-adoptar_c -p 8003:8003 api-adopta
 
-docker run -d --rm --name api-adoptar_c -p 8003:8003 api-adoptar
 
 ## API 4
 cd proyectoparcial/api-admin
@@ -68,10 +61,10 @@ docker tag api-admin sofiagarcia/api-admin
 
 docker push sofiagarcia/api-admin
 
-docker logout
-
 docker run -d --rm --name api-admin_c -p 8004:8004 api-admin
 
+
+docker logout
 
 ## Testing Postman (colocar el ID, luego lo de abajo)
 
