@@ -43,7 +43,7 @@
       }},
     
     created() {
-      axios.get('http://54.82.45.96:8002/donar')
+      axios.get('http://34.233.133.147:8002/donar')
       .then(response => {
         console.log(response)
         // JSON responses are automatically parsed.
