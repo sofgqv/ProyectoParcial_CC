@@ -41,7 +41,7 @@
       }},
     methods:{
         created(){
-            axios.get('http://54.82.45.96:8001/servoluntarios',
+            axios.get('http://34.233.133.147:8001/servoluntarios',
             {headers: {  
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'}
