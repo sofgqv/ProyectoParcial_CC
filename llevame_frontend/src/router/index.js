@@ -53,6 +53,16 @@ const routes = [
         /* webpackChunkName: "SignUp" */ "../views/ApiSerVoluntario.vue"
       ),
   },
+  {
+    path: "/voluntarios",
+    name: "ApiVerVoluntarios",
+    //meta: { ifAuth: true },
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiVerVoluntarios.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

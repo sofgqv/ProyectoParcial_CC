@@ -1,0 +1,60 @@
+<template>
+    <div class="row">
+        <div class="col-md-12">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>FN</th>
+                <th>Celular</th>
+                <th>Actividad</th>
+                <th>Aceptado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="voluntario in voluntarios" :key="voluntario.id">
+                <td>{{voluntario.id}}</td>
+                <td>{{voluntario.nombres}}</td>
+                <td>{{voluntario.apellidos}}</td>
+                <td>{{voluntario.dni}}</td>
+                <td>{{voluntario.fecha_n}}</td>
+                <td>{{voluntario.celular}}</td>
+                <td>{{voluntario.actividad}}</td>
+                <td>{{voluntario.aceptado}}</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</template>
+    
+  <script>
+  import axios from 'axios';
+  
+  export default {
+    data() {
+      return {
+        voluntarios: ''
+      }},
+    methods:{
+        created(){
+            axios.get('http://54.82.45.96:8001/servoluntarios',
+            {headers: {  
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'}
+            })
+            .then(res => {
+                this.voluntarios = res
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+    }
+  }
+
+  </script>
