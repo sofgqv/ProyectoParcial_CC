@@ -62,7 +62,7 @@
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Origin': '*'}
                     }
-                    axios.post("http://54.82.45.96:8002/donaciones", 
+                    axios.post("http://34.233.133.147/donaciones", 
                         { nombres : this.nombres, apellidos : this.apellidos, dni : this.dni, correo : this.correo, monto : this.monto}, config
                     )
                     .then(res => {
