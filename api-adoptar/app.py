@@ -1,3 +1,4 @@
+import collections
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flaskext.mysql import MySQL
@@ -32,7 +33,20 @@ class Adoptar(Resource):
             cursor = conn.cursor()
             cursor.execute("""select * from adoptar""")
             rows = cursor.fetchall()
-            return jsonify(rows)
+            lista = []
+            for row in rows:
+                dictionary = collections.OrderedDict()
+                dictionary['id'] = row[0]
+                dictionary['nombres'] = row[1]
+                dictionary['apellidos'] = row[2]
+                dictionary['dni'] = row[3]
+                dictionary['fecha_n'] = row[4]
+                dictionary['celular'] = row[5]
+                dictionary['correo'] = row[6]
+                dictionary['mascota_id'] = row[7]
+                dictionary['aceptado'] = row[8]
+                lista.append(dictionary)
+            return jsonify(lista)
         except Exception as e:
             print(e)
         finally:
@@ -44,13 +58,14 @@ class Adoptar(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            _nombres = request.form['nombres']
-            _apellidos = request.form['apellidos']
-            _dni = request.form['dni']
-            _fecha_n = request.form['fecha_n']
-            _celular = request.form['celular']
-            _correo = request.form['correo']
-            _mascota_id = request.form['mascota_id']
+            body = request.get_json()
+            _nombres = body.get('nombres', None)
+            _apellidos = body.get('apellidos', None)
+            _dni = body.get('dni', None)
+            _fecha_n = body.get('fecha_n', None)
+            _celular = body.get('celular', None)
+            _correo = body.get('correo', None)
+            _mascota_id = body.get('mascota_id', None)
             insert_user_cmd = """INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) 
                                 VALUES(%s, %s, %s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _correo, _mascota_id))
@@ -74,7 +89,8 @@ class AdoptarEstado(Resource):
             var = 0
             conn = mysql.connect()
             cursor = conn.cursor()
-            _aceptado = request.form['aceptado']
+            body = request.get_json()
+            _aceptado = body.get('aceptado', None)
             if _aceptado == 'SI': var = 1
             update_user_cmd = """update adoptar 
                                  set aceptado=%s
@@ -100,7 +116,18 @@ class Mascotas(Resource):
             cursor = conn.cursor()
             cursor.execute('select * from mascota')
             rows = cursor.fetchall()
-            return jsonify(rows)
+            lista = []
+            for row in rows:
+                dictionary = collections.OrderedDict()
+                dictionary['id'] = row[0]
+                dictionary['nombre'] = row[1]
+                dictionary['raza'] = row[2]
+                dictionary['fecha_n'] = row[3]
+                dictionary['sexo'] = row[4]
+                dictionary['size'] = row[5]
+                dictionary['estado_adop'] = row[6]
+                lista.append(dictionary)
+            return jsonify(lista)
         except Exception as e:
             print(e)
         finally:
@@ -112,11 +139,12 @@ class MascotasAdd(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            _nombre = request.form['nombre']
-            _raza = request.form['raza']
-            _fecha_n = request.form['fecha_n']
-            _sexo = request.form['sexo']
-            _size = request.form['size']
+            body = request.get_json()
+            _nombre = body.get('nombres', None)
+            _raza = body.get('raza', None)
+            _fecha_n = body.get('fecha_n', None)
+            _sexo = body.get('sexo', None)
+            _size = body.get('size', None)
             insert_user_cmd = """INSERT INTO mascota(nombre, raza, fecha_n, sexo, size) 
                                 VALUES(%s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombre, _raza, _fecha_n, _sexo, _size))
@@ -140,7 +168,18 @@ class Mascota(Resource):
             cursor = conn.cursor()
             cursor.execute('select * from mascota where id = %s',m_id)
             rows = cursor.fetchall()
-            return jsonify(rows)
+            lista = []
+            for row in rows:
+                dictionary = collections.OrderedDict()
+                dictionary['id'] = row[0]
+                dictionary['nombre'] = row[1]
+                dictionary['raza'] = row[2]
+                dictionary['fecha_n'] = row[3]
+                dictionary['sexo'] = row[4]
+                dictionary['size'] = row[5]
+                dictionary['estado_adop'] = row[6]
+                lista.append(dictionary)
+            return jsonify(lista)
         except Exception as e:
             print(e)
         finally:
@@ -152,11 +191,12 @@ class Mascota(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            _nombre = request.form['nombre']
-            _raza = request.form['raza']
-            _fecha_n = request.form['fecha_n']
-            _sexo = request.form['sexo']
-            _size = request.form['size']
+            body = request.get_json()
+            _nombre = body.get('nombres', None)
+            _raza = body.get('raza', None)
+            _fecha_n = body.get('fecha_n', None)
+            _sexo = body.get('sexo', None)
+            _size = body.get('size', None)
 
             if (_nombre is not None): 
                 update_pet_cmd = """update mascota 

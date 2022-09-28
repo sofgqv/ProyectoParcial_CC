@@ -1,8 +1,15 @@
 <template>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+  </head>
+
     <div class="container" id="vuejscrudapp">
         <div class="row">
             <div class="col-md-12 mt-5">
-            <h1 class="text-center">Voluntarios</h1>
+            <h1 class="text-center">Ser Voluntario</h1>
             <hr>
             </div>
         </div>
@@ -10,9 +17,9 @@
             <div class="col-md-12">
             <!-- Add Records -->
             <div>
-                <b-button id="show-btn" @click="showModal('my-modal')">¡Únete a nosotros!</b-button>
+                <h4 id="show-btn" @click="showModal('my-modal')">¡Únete a nosotros!</h4>
     
-                <b-modal ref="my-modal" hide-footer title="unete">
+                <div ref="my-modal" hide-footer title="unete">
                 <div>
                     <form action="" @submit.prevent="onSubmit">
                     <div class="form-group">
@@ -25,11 +32,11 @@
                     </div>
                     <div class="form-group">
                         <label for="">DNI</label>
-                        <input type="text" v-model="dni" class="form-control">
+                        <input type="text" length="8" v-model="dni" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="">Fecha de nacimiento</label>
-                        <input type="text" v-model="fecha_n" class="form-control">
+                        <input type="date" v-model="fecha_n" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="">Celular</label>
@@ -37,91 +44,65 @@
                     </div>
                     <div class="form-group">
                         <label for="">Actividad</label>
-                        <select name="cars" v-model="actividad" class="form-control">
+                        <select v-model="actividad" class="form-control">
                             <option value="entrega de donaciones">Entrega de donaciones</option>
                             <option value="redes sociales">Manejo de redes sociales</option>
                             <option value="embajador">Ser embajador</option>
                           </select>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-sm btn-outline-info">Agregar donacion</button>
+                        <button class="btn btn-sm btn-outline-info">Inscribirme</button>
                     </div>
                     </form>
                 </div>
-                <b-button class="mt-3" variant="outline-danger" block @click="hideModal('my-modal')">Cierrame</b-button>
-                </b-modal>
+              </div>
             </div>
         </div>
     </div>
 </div>
 </template>
     
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        nombres: '',
-        apellidos: '',
-        dni: '',
-        correo: '',
-        monto: '',
-        donaciones: [],
-        errors: []
-      }},
-    methods: {
-            showModal(id) {
-                this.$refs[id].show()
-            },
-            hideModal(id) {
-                this.$refs[id].hide()
-            },
-  
-            onSubmit(){
-                if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.correo !== '' && this.monto !== '') {
-                    var config = { headers: {  
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*'}
-                    }
-                    axios.post("http://54.82.45.96:8001/servoluntarios", 
-                        { nombres : this.nombres, apellidos : this.apellidos, dni : this.dni, correo : this.correo, monto : this.monto}, config
-                    )
-                    .then(res => {
-                        console.log(res)
-                        alert('¡Gracias por inscribirte!')
-                        this.nombres = ''
-                        this.apellidos = ''
-                        this.dni = ''
-                        this.correo = ''
-                        this.monto = ''
-          
-                        this.hideModal('my-modal')
-                        this.getDonacion()
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
-                }else{
-                  alert('empty')
-                }
-            }
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      nombres: '',
+      apellidos: '',
+      dni: '',
+      fecha_n: '',
+      celular: '',
+      actividad: '',
+      errors: []
+    }},
+  methods: {
+    onSubmit(){
+      if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.fecha_n !== '' && this.celular !== '' && this.actividad !== '') {
+        axios.post("http://54.82.45.96:8001/servoluntarios",{
+          nombres : this.nombres,
+          apellidos : this.apellidos,
+          dni : this.dni,
+          fecha_n : this.fecha_n,
+          celular : this.celular,
+          actividad : this.actividad
         },
-           
-        mounted: function(){
-          this.getDonacion()
-        },
-    // Fetches posts when the component is created.
-    created() {
-      axios.get(``)
-      .then(response => {
-        // JSON responses are automatically parsed.
-        this.mascotas = response.data
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+        {headers: {  
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'}
+        })
+        .then(res => {
+            console.log(res)
+            alert('¡Gracias por inscribirte!')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+      }else{
+        alert('Inscripción no funcionó. Inténtalo nuevamente.')
+      }
     }
   }
+}
 
-  </script>
+</script>

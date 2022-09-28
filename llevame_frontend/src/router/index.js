@@ -45,7 +45,7 @@ const routes = [
       ),
   },
   {
-    path: "/donaciones",
+    path: "/servoluntario",
     name: "ApiSerVoluntario",
     props: true,
     component: () =>

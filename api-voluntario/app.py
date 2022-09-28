@@ -1,3 +1,5 @@
+import collections
+import json
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from flask_cors import CORS
@@ -30,10 +32,23 @@ class SerVoluntario(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""SELECT * FROM voluntario""")
-            res = cursor.fetchall()
-            return jsonify(res)
-            #return jsonify(rows)
+            cursor.execute("""SELECT id, nombres, apellidos, dni, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, celular, actividad, aceptado FROM voluntario""")
+            rows = cursor.fetchall()
+            
+            lista = []
+            for row in rows:
+                dictionary = collections.OrderedDict()
+                dictionary['id'] = row[0]
+                dictionary['nombres'] = row[1]
+                dictionary['apellidos'] = row[2]
+                dictionary['dni'] = row[3]
+                dictionary['fecha_n'] = row[4]
+                dictionary['celular'] = row[5]
+                dictionary['actividad'] = row[6]
+                dictionary['aceptado'] = row[7]
+                lista.append(dictionary)
+            return jsonify(lista)
+        
         except Exception as e:
             print(e)
         finally:
@@ -44,12 +59,13 @@ class SerVoluntario(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            _nombres = request.form['nombres']
-            _apellidos = request.form['apellidos']
-            _dni = request.form['dni']
-            _fecha_n = request.form['fecha_n']
-            _celular = request.form['celular']
-            _actividad = request.form['actividad']
+            body = request.get_json()
+            _nombres = body.get('nombres', None)
+            _apellidos = body.get('apellidos', None)
+            _dni = body.get('dni', None)
+            _fecha_n = body.get('fecha_n', None)
+            _celular = body.get('celular', None)
+            _actividad = body.get('actividad', None)
             insert_user_cmd = """INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) 
                                 VALUES(%s, %s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _actividad))

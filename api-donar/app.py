@@ -1,3 +1,4 @@
+import collections
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flaskext.mysql import MySQL
@@ -31,11 +32,18 @@ class Donar(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
             cursor.execute("""select * from donacion""")
-            donaciones = cursor.fetchall()
-            return jsonify({
-            'success' : True,
-            'donaciones' : donaciones
-        })
+            rows = cursor.fetchall()
+            lista = []
+            for row in rows:
+                dictionary = collections.OrderedDict()
+                dictionary['id'] = row[0]
+                dictionary['nombres'] = row[1]
+                dictionary['apellidos'] = row[2]
+                dictionary['dni'] = row[3]
+                dictionary['correo'] = row[4]
+                dictionary['monto'] = row[5]
+                lista.append(dictionary)
+            return jsonify(lista)
         except Exception as e:
             print(e)
         finally:
@@ -47,11 +55,12 @@ class Donaciones(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            _nombres = request.form['nombres']
-            _apellidos = request.form['apellidos']
-            _dni = request.form['dni']
-            _correo = request.form['correo']
-            _monto = request.form['monto']
+            body = request.get_json()
+            _nombres = body.get('nombres', None)
+            _apellidos = body.get('apellidos', None)
+            _dni = body.get('dni', None)
+            _correo = body.get('correo', None)
+            _monto = body.get('monto', None)
             insert_user_cmd = """INSERT INTO donacion(nombres, apellidos, dni, correo, monto) 
                                 VALUES(%s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _correo, _monto))
