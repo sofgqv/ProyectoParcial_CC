@@ -34,8 +34,7 @@ class SerVoluntario(Resource):
             cursor = conn.cursor()
             cursor.execute("""SELECT id, nombres, apellidos, dni, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, celular, actividad, aceptado FROM voluntario""")
             rows = cursor.fetchall()
-            
-            lista = []
+            lista = collections.OrderedDict()
             for row in rows:
                 dictionary = collections.OrderedDict()
                 dictionary['id'] = row[0]
@@ -46,9 +45,8 @@ class SerVoluntario(Resource):
                 dictionary['celular'] = row[5]
                 dictionary['actividad'] = row[6]
                 dictionary['aceptado'] = row[7]
-                lista.append(dictionary)
+                lista[row[0]] = dictionary
             return jsonify(lista)
-        
         except Exception as e:
             print(e)
         finally:

@@ -31,30 +31,30 @@
     </div>
 </template>
     
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        voluntarios: ''
-      }},
-    methods:{
-        created(){
-            axios.get('http://34.233.133.147:8001/servoluntarios',
-            {headers: {  
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'}
-            })
-            .then(res => {
-                this.voluntarios = res
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }
-    }
-  }
+<script>
+import axios from 'axios';
 
-  </script>
+export default {
+    el: '#app',
+    data() {
+    return {
+        voluntarios: ''
+    }},
+    mounted(){
+        axios.get('http://34.233.133.147:8001/servoluntarios',
+        {headers: {  
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'}
+        })
+        .then(res => {
+            this.voluntarios = res.data
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}
+
+</script>
+  
