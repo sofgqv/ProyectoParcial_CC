@@ -2,7 +2,7 @@
 # CORRER BASE DE DATOS
 
 ## EN CMD:
-ssh -i ./.ssh/labsuser.pem ubuntu@3.230.38.83
+ssh -i ./.ssh/labsuser.pem ubuntu@3.230.38.83exit
 
 docker run -d --rm --name mysql_c -e MYSQL_ROOT_PASSWORD=utec -p 8005:3306 -v mysql_data:/var/lib/mysql mysql:8.0
 
@@ -47,7 +47,7 @@ docker tag api-adoptar valdlaw/api-adoptar
 
 docker push valdlaw/api-adoptar
 
-docker run -d --rm --name api-adoptar_c -p 8003:8003 api-adopta
+docker run -d --rm --name api-adoptar_c -p 8003:8003 api-adoptar
 
 
 ## API 4
@@ -92,9 +92,9 @@ docker logout
 
 # Correr en ambientes de producción
 
-docker run -d --rm --name api-voluntario_c -p 8001:8001 sofiagarcia/api-voluntario
+docker run -d --rm --name api-voluntario_c -p 8001:8001 valdlaw/api-voluntario
 
-docker run -d --rm --name api-donar_c -p 8002:8002 sofiagarcia/api-donar
+docker run -d --rm --name api-donar_c -p 8002:8002 valdlaw/api-donar
 
 docker run -d --rm --name api-adoptar_c -p 8003:8003 valdlaw/api-adoptar
 

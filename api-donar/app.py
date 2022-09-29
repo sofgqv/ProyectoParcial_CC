@@ -12,18 +12,18 @@ mysql = MySQL()
 
 #Create an instance of Flask RESTful API
 api = Api(app)
+
 #Set database credentials in config.
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'utec'
 app.config['MYSQL_DATABASE_DB'] = 'llevame_pe' #nombre base de datos
 app.config['MYSQL_DATABASE_HOST'] = '3.230.38.83'
 app.config['MYSQL_DATABASE_PORT'] = 8005
+
 CORS(app, resources={r'/*': {'origins': '*'}})
 
 #Initialize the MySQL extension
 mysql.init_app(app)
-
-# enable CORS
 
 #Get All Users, or Create a new user
 class Donar(Resource):
@@ -31,9 +31,9 @@ class Donar(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select * from donacion""")
+            cursor.execute("""select id, nombres, apellidos, dni, correo, monto from donacion""")
             rows = cursor.fetchall()
-            lista = []
+            lista = collections.OrderedDict()
             for row in rows:
                 dictionary = collections.OrderedDict()
                 dictionary['id'] = row[0]
@@ -42,7 +42,7 @@ class Donar(Resource):
                 dictionary['dni'] = row[3]
                 dictionary['correo'] = row[4]
                 dictionary['monto'] = row[5]
-                lista.append(dictionary)
+                lista[row[0]]= dictionary
             return jsonify(lista)
         except Exception as e:
             print(e)

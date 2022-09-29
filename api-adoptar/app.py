@@ -31,9 +31,9 @@ class Adoptar(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select * from adoptar""")
+            cursor.execute("""select id, nombres, apellidos, dni, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, celular, correo, mascota_id, aceptado from adoptar""")
             rows = cursor.fetchall()
-            lista = []
+            lista = collections.OrderedDict()
             for row in rows:
                 dictionary = collections.OrderedDict()
                 dictionary['id'] = row[0]
@@ -45,7 +45,7 @@ class Adoptar(Resource):
                 dictionary['correo'] = row[6]
                 dictionary['mascota_id'] = row[7]
                 dictionary['aceptado'] = row[8]
-                lista.append(dictionary)
+                lista[row[0]] = dictionary
             return jsonify(lista)
         except Exception as e:
             print(e)
@@ -91,11 +91,10 @@ class AdoptarEstado(Resource):
             cursor = conn.cursor()
             body = request.get_json()
             _aceptado = body.get('aceptado', None)
-            if _aceptado == 'SI': var = 1
             update_user_cmd = """update adoptar 
                                  set aceptado=%s
                                  where id=%s"""
-            cursor.execute(update_user_cmd, (var, a_id))
+            cursor.execute(update_user_cmd, (_aceptado, a_id))
             conn.commit()
             response = jsonify('Peticion de adopcion actualizada exitosamente.')
             response.status_code = 200
@@ -114,9 +113,9 @@ class Mascotas(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute('select * from mascota')
+            cursor.execute("""select id, nombre, raza, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, sexo, size, estado_adop from mascota""")
             rows = cursor.fetchall()
-            lista = []
+            lista = collections.OrderedDict()
             for row in rows:
                 dictionary = collections.OrderedDict()
                 dictionary['id'] = row[0]
@@ -126,7 +125,7 @@ class Mascotas(Resource):
                 dictionary['sexo'] = row[4]
                 dictionary['size'] = row[5]
                 dictionary['estado_adop'] = row[6]
-                lista.append(dictionary)
+                lista[row[0]] = dictionary
             return jsonify(lista)
         except Exception as e:
             print(e)
@@ -166,9 +165,9 @@ class Mascota(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute('select * from mascota where id = %s',m_id)
+            cursor.execute("""select id, nombre, raza, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, sexo, size, estado_adop from mascota  where id = %s""", m_id)
             rows = cursor.fetchall()
-            lista = []
+            lista = collections.OrderedDict()
             for row in rows:
                 dictionary = collections.OrderedDict()
                 dictionary['id'] = row[0]
@@ -178,7 +177,7 @@ class Mascota(Resource):
                 dictionary['sexo'] = row[4]
                 dictionary['size'] = row[5]
                 dictionary['estado_adop'] = row[6]
-                lista.append(dictionary)
+                lista[row[0]] = dictionary
             return jsonify(lista)
         except Exception as e:
             print(e)
