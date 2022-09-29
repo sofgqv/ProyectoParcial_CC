@@ -49,6 +49,16 @@ const routes = [
       ),
   },
   {
+    path: "/donar",
+    name: "ApiDonar",
+    //meta: { ifAuth: true },
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiDonar.vue"
+      ),
+  },
+  {
     path: "/servoluntario",
     name: "ApiSerVoluntario",
     props: true,

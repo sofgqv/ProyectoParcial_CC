@@ -8,8 +8,8 @@
     <router-link to="/">Home</router-link> | 
     <router-link :to="{ name: 'ApiMascotas' }">Mascotas</router-link> | 
     <router-link :to="{ name: 'ApiAdoptar' }">Adoptar</router-link> | 
-    <router-link :to="{ name: 'ApiSerVoluntario' }">Ser Voluntario</router-link>
-    <!--<router-link :to="{ name: 'ApiDonar' }">Donar</router-link>-->
+    <router-link :to="{ name: 'ApiSerVoluntario' }">Ser Voluntario</router-link> |
+    <router-link :to="{ name: 'ApiDonar' }">Donar</router-link>
     <!--<div v-if="auth.authorized">-->
       | <router-link :to="{ name: 'ApiAdopciones' }">Adopciones</router-link>
       | <router-link :to="{ name: 'ApiDonaciones' }">Donaciones</router-link>
