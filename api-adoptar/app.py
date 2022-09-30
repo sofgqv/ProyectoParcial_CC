@@ -84,9 +84,8 @@ class Adoptar(Resource):
 
 
 class AdoptarEstado(Resource):
-    def put(self, a_id):
+    def patch(self, a_id):
         try:
-            var = 0
             conn = mysql.connect()
             cursor = conn.cursor()
             body = request.get_json()
@@ -113,7 +112,7 @@ class Mascotas(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select id, nombre, raza, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, sexo, size, estado_adop from mascota""")
+            cursor.execute("""select id, nombre, raza, fecha_n, sexo, size, estado_adop from mascota""")
             rows = cursor.fetchall()
             lista = collections.OrderedDict()
             for row in rows:
@@ -139,7 +138,7 @@ class MascotasAdd(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
             body = request.get_json()
-            _nombre = body.get('nombres', None)
+            _nombre = body.get('nombre', None)
             _raza = body.get('raza', None)
             _fecha_n = body.get('fecha_n', None)
             _sexo = body.get('sexo', None)
@@ -165,20 +164,17 @@ class Mascota(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute("""select id, nombre, raza, DATE_FORMAT(fecha_n, "%Y-%m-%d") as fecha_n, sexo, size, estado_adop from mascota  where id = %s""", m_id)
-            rows = cursor.fetchall()
-            lista = collections.OrderedDict()
-            for row in rows:
-                dictionary = collections.OrderedDict()
-                dictionary['id'] = row[0]
-                dictionary['nombre'] = row[1]
-                dictionary['raza'] = row[2]
-                dictionary['fecha_n'] = row[3]
-                dictionary['sexo'] = row[4]
-                dictionary['size'] = row[5]
-                dictionary['estado_adop'] = row[6]
-                lista[row[0]] = dictionary
-            return jsonify(lista)
+            cursor.execute("""select id, nombre, raza, fecha_n, sexo, size, estado_adop from mascota where id = %s""", m_id)
+            row = cursor.fetchall()[0]
+            dictionary = collections.OrderedDict()
+            dictionary['id'] = row[0]
+            dictionary['nombre'] = row[1]
+            dictionary['raza'] = row[2]
+            dictionary['fecha_n'] = row[3]
+            dictionary['sexo'] = row[4]
+            dictionary['size'] = row[5]
+            dictionary['estado_adop'] = row[6]
+            return jsonify(dictionary)
         except Exception as e:
             print(e)
         finally:
@@ -191,37 +187,46 @@ class Mascota(Resource):
             conn = mysql.connect()
             cursor = conn.cursor()
             body = request.get_json()
-            _nombre = body.get('nombres', None)
+            _nombre = body.get('nombre', None)
+            _raza = body.get('raza', None)
+            _fecha_n = body.get('fecha_n', None)
+            _sexo = body.get('sexo', None)
+            _size = body.get('size', None)
+            
+            conn = mysql.connect()
+            cursor = conn.cursor()
+            body = request.get_json()
+            _nombre = body.get('nombre', None)
             _raza = body.get('raza', None)
             _fecha_n = body.get('fecha_n', None)
             _sexo = body.get('sexo', None)
             _size = body.get('size', None)
 
-            if (_nombre is not None): 
+            if (_nombre != ""):
                 update_pet_cmd = """update mascota 
                                  set nombre=%s
                                  where id=%s"""
                 cursor.execute(update_pet_cmd, (_nombre, m_id))
 
-            if (_raza is not None): 
+            if (_raza != ""): 
                 update_pet_cmd = """update mascota 
                                  set raza=%s
                                  where id=%s"""
                 cursor.execute(update_pet_cmd, (_raza, m_id))
 
-            if (_fecha_n is not None): 
+            if (_fecha_n != ""):
                 update_pet_cmd = """update mascota 
                                  set fecha_n=%s
                                  where id=%s"""
                 cursor.execute(update_pet_cmd, (_fecha_n, m_id))
 
-            if (_sexo is not None): 
+            if (_sexo != ""): 
                 update_pet_cmd = """update mascota 
                                  set sexo=%s
                                  where id=%s"""
                 cursor.execute(update_pet_cmd, (_sexo, m_id))
 
-            if (_size is not None): 
+            if (_size != ""): 
                 update_pet_cmd = """update mascota 
                                  set size=%s
                                  where id=%s"""
@@ -242,7 +247,7 @@ class Mascota(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute('delete from mascota where id = %s',m_id)
+            cursor.execute("""delete from mascota where id = %s""", m_id)
             conn.commit()
             response = jsonify('Mascota eliminada exitosamente.')
             response.status_code = 200

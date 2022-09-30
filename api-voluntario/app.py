@@ -1,5 +1,4 @@
 import collections
-import json
 from flask import Flask, jsonify, request
 from flaskext.mysql import MySQL
 from flask_cors import CORS
@@ -64,8 +63,7 @@ class SerVoluntario(Resource):
             _fecha_n = body.get('fecha_n', None)
             _celular = body.get('celular', None)
             _actividad = body.get('actividad', None)
-            insert_user_cmd = """INSERT INTO voluntario(nombres, apellidos, dni, fecha_n, celular, actividad) 
-                                VALUES(%s, %s, %s, %s, %s, %s)"""
+            insert_user_cmd = """INSERT INTO voluntario (nombres, apellidos, dni, fecha_n, celular, actividad) VALUES(%s, %s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _actividad))
             conn.commit()
             response = jsonify(message='Voluntario inscrito exitosamente.', id=cursor.lastrowid)
@@ -137,7 +135,7 @@ class Voluntario(Resource):
             return(response)       
 
 #API resource routes
-api.add_resource(SerVoluntario, '/servoluntarios', endpoint='servoluntarios')
+api.add_resource(SerVoluntario, '/servoluntario', endpoint='servoluntario')
 api.add_resource(Voluntario, '/voluntario/<int:v_id>', endpoint='voluntario')
 
 if __name__ == "__main__":
