@@ -31,12 +31,7 @@ class Donaciones(Resource):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
-<<<<<<< Updated upstream
             cursor.execute("""SELECT id, nombres, apellidos, dni, correo, monto FROM donacion""")
-=======
-            body = request.get_json()
-            cursor.execute("""select id, nombres, apellidos, dni, correo, monto from donacion""")
->>>>>>> Stashed changes
             rows = cursor.fetchall()
             lista = collections.OrderedDict()
             for row in rows:
