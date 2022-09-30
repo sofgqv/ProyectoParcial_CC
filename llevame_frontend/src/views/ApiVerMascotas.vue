@@ -22,6 +22,12 @@
                 <td>{{mascota.sexo}}</td>
                 <td>{{mascota.size}}</td>
                 <td>{{mascota.estado_adop}}</td>
+                <td>
+                    <!--<router-link class="btn btn-success btn-sm" :to="{ name: 'EditarMascota', params: { mascotaId: mascota.id }}">Editar mascota</router-link>-->
+                    <button class="btn btn-danger btn-sm" @click="eliminarMascota(mascota.id)">Eliminar</button>
+                </td>
+                <td>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -51,6 +57,23 @@ export default {
         .catch(err => {
             console.log(err)
         })
+    },
+    methods: {
+        eliminarMascota(mascotaId) {
+            this.axios.delete('ip:8003${mascotaId}',
+            {headers: {  
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'}
+            })
+            .then(res => {
+                let i = this.mascotas.map(data => data.id).indexOf(mascotaId);
+                this.mascotas.splice(i, 1)
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            }
     }
 }
 
