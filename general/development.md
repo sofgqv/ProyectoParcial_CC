@@ -2,7 +2,7 @@
 # CORRER BASE DE DATOS
 
 ## EN CMD:
-ssh -i ./.ssh/labsuser.pem ubuntu@3.230.38.83exit
+ssh -i ./.ssh/labsuser.pem ubuntu@3.230.38.83
 
 docker run -d --rm --name mysql_c -e MYSQL_ROOT_PASSWORD=utec -p 8005:3306 -v mysql_data:/var/lib/mysql mysql:8.0
 
