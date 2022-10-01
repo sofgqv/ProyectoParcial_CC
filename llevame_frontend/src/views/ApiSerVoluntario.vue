@@ -79,7 +79,7 @@ export default {
   methods: {
     onSubmit(){
       if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.fecha_n !== '' && this.celular !== '' && this.actividad !== '') {
-        axios.post("http://107.23.18.244:8001/servoluntarios",{
+        axios.post("http://34.230.89.209:8001/servoluntarios",{
           nombres : this.nombres,
           apellidos : this.apellidos,
           dni : this.dni,
