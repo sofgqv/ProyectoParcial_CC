@@ -8,10 +8,10 @@
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>DNI</th>
-                <th>Fecha de nacimiento</th>
+                <th>FechaN</th>
                 <th>Celular</th>
                 <th>Correo</th>
-                <th>ID de mascota</th>
+                <th>IDM</th>
                 <th>Aceptado</th>
             </tr>
             </thead>
@@ -25,7 +25,7 @@
                 <td>{{adopcion.celular}}</td>
                 <td>{{adopcion.correo}}</td>
                 <td>{{adopcion.mascota_id}}</td>
-                <td>{{adopcion.aceptado}}</td>
+                <td><input type="checkbox" id="aceptado" value="1"></td>
             </tr>
             </tbody>
         </table>
@@ -34,28 +34,28 @@
 </template>
   
 <script>
-import axios from 'axios';
-
-export default {
-    el: '#app',
-    data() {
-    return {
-        adopciones: ''
-    }},
-    mounted(){
-        axios.get('http://34.230.89.209:8003/adoptar',
-        {headers: {  
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'}
-        })
-        .then(res => {
-            this.adopciones = res.data
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+    import axios from 'axios';
+    
+    export default {
+        el: '#app',
+        data() {
+        return {
+            adopciones: ''
+        }},
+        mounted(){
+            axios.get('http://34.230.89.209:8003/adoptar',
+            {headers: {  
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'}
+            })
+            .then(res => {
+                this.adopciones = res.data
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
-}
-
-</script>
+    
+    </script>
