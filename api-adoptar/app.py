@@ -54,7 +54,7 @@ class AdoptarVer(Resource):
             conn.close()
 
 class Adoptar(Resource):
-    def post(m_id):
+    def post(adop_id):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -82,7 +82,7 @@ class Adoptar(Resource):
 
 
 class AdoptarEstado(Resource):
-    def patch(self, adop_id):
+    def patch(self, m_id):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
