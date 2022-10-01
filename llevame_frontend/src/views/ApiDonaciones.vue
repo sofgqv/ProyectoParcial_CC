@@ -18,8 +18,8 @@
                 <td>{{donacion.nombres}}</td>
                 <td>{{donacion.apellidos}}</td>
                 <td>{{donacion.dni}}</td>
-                <td>{{donacion.monto}}</td>
                 <td>{{donacion.correo}}</td>
+                <td>{{donacion.monto}}</td>
             </tr>
             </tbody>
         </table>
@@ -27,32 +27,30 @@
     </div>
 </template>
     
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        nombres: '',
-        apellidos: '',
-        dni: '',
-        correo: '',
-        monto: '',
-        donaciones: [],
-        errors: []
-      }},
-    
-    created() {
-      axios.get('http://34.230.89.209:8002/donaciones')
-      .then(response => {
-        console.log(response)
-        // JSON responses are automatically parsed.
-        this.donaciones = response.data
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
-    }
-  }
+<script>
+import axios from 'axios';
 
-  </script>
+export default {
+  el: '#app',
+  data() {
+  return {
+      donaciones: '',
+      errors: []
+  }},
+  mounted(){
+      axios.get('http://34.230.89.209:8002/donaciones',
+      {headers: {  
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'}
+      })
+      .then(res => {
+          this.donaciones = res.data
+          console.log(res)
+      })
+      .catch(err => {
+          console.log(err)
+      })
+  }
+}
+
+</script>
