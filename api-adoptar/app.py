@@ -26,7 +26,7 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 mysql.init_app(app)
 
 #Get All Users, or Create a new user
-class AdoptarVer(Resource):
+class Adoptar(Resource):
     def get(self):
         try:
             conn = mysql.connect()
@@ -53,8 +53,7 @@ class AdoptarVer(Resource):
             cursor.close()
             conn.close()
 
-class Adoptar(Resource):
-    def post(adop_id):
+    def post(self):
         try:
             conn = mysql.connect()
             cursor = conn.cursor()
@@ -65,8 +64,9 @@ class Adoptar(Resource):
             _fecha_n = body.get('fecha_n', None)
             _celular = body.get('celular', None)
             _correo = body.get('correo', None)
+            _mascota_id = body.get('mascota_id', None)
             insert_user_cmd = """INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"""
-            cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _correo, m_id))
+            cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _correo, _mascota_id))
             conn.commit()
             response = jsonify('Peticion de adopcion creada con exito.')
             #response.data = cursor.lastrowid
@@ -260,8 +260,7 @@ class Mascota(Resource):
 
 #API resource routes
 api.add_resource(AdoptarEstado, '/adoptarestado/<int:a_id>', endpoint='adoptarestado')
-api.add_resource(AdoptarVer, '/adoptarver', endpoint='adoptarver')
-api.add_resource(Adoptar, '/adoptar/<int:adop_id>', endpoint='adoptar')
+api.add_resource(Adoptar, '/adoptar', endpoint='adoptar')
 api.add_resource(Mascota, '/mascota/<int:m_id>', endpoint='mascota')
 api.add_resource(Mascotas, '/mascotas', endpoint='mascotas')
 api.add_resource(MascotasAdd, '/mascotasadd', endpoint='mascotasadd')
