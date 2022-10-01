@@ -64,14 +64,14 @@ export default {
         })
     },
     methods: {
-        eliminarMascota(mascotaId) {
-            this.axios.delete('ip:8003${mascotaId}',
+        eliminarMascota(mascota_id) {
+            this.axios.delete('http://34.230.89.209:8003/mascota/${mascota_id}' ,
             {headers: {  
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'}
             })
             .then(res => {
-                let i = this.mascotas.map(data => data.id).indexOf(mascotaId);
+                let i = this.mascotas.map(data => data.id).indexOf(mascota_id);
                 this.mascotas.splice(i, 1)
                 console.log(res)
             })

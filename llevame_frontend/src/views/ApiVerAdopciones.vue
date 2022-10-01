@@ -37,6 +37,7 @@
 import axios from 'axios';
 
 export default {
+<<<<<<< Updated upstream
     el: '#app',
     data() {
     return {

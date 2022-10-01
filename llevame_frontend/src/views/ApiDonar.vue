@@ -49,48 +49,48 @@
           </div>
       </div>
   </div>
-  </template>
+</template>
       
-  <script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        nombres: '',
-        apellidos: '',
-        dni: '',
-        correo: '',
-        monto: '',
-        errors: []
-      }},
-    methods: {
-      onSubmit(){
-        if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.correo !== '' && this.monto !== '') {
-          axios.post("http://34.230.89.209:8002/donaciones",{
-            nombres : this.nombres,
-            apellidos : this.apellidos,
-            dni : this.dni,
-            correo : this.correo,
-            monto : this.monto
-          },
-          {headers: {  
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'}
-          })
-          .then(res => {
-              console.log(res)
-              alert('¡Gracias por donar!')
-          })
-          .catch(err => {
-              console.log(err)
-          })
-        }else{
-          alert('Donación no procesada. Inténtalo nuevamente.')
-        }
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      nombres: '',
+      apellidos: '',
+      dni: '',
+      correo: '',
+      monto: '',
+      errors: []
+    }},
+  methods: {
+    onSubmit(){
+      if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.correo !== '' && this.monto !== '') {
+        axios.post("http://34.230.89.209:8002/donar",{
+          nombres : this.nombres,
+          apellidos : this.apellidos,
+          dni : this.dni,
+          correo : this.correo,
+          monto : this.monto
+        },
+        {headers: {  
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'}
+        })
+        .then(res => {
+            console.log(res)
+            alert('¡Gracias por donar!')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+      }else{
+        alert('Donación no procesada. Inténtalo nuevamente.')
       }
     }
   }
-  
-  </script>
+}
+
+</script>
   
