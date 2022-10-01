@@ -64,11 +64,11 @@ class Donar(Resource):
             insert_user_cmd = """INSERT INTO donacion(nombres, apellidos, dni, correo, monto) VALUES(%s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _correo, _monto))
             conn.commit()
-            response = jsonify(success=True, message='Donación inscrita exitosamente.', id=cursor.lastrowid, status_code=200)
+            response = jsonify(message='Donación inscrita exitosamente.')
             #response.data = cursor.lastrowid
         except Exception as e:
             print(e)
-            response = jsonify(message = 'Falló añadir la donación.', status_code = 400)
+            response = jsonify(message = 'Falló añadir la donación.')
         finally:
             cursor.close()
             conn.close()

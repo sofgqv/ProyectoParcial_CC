@@ -145,7 +145,7 @@ class MascotasAdd(Resource):
                                 VALUES(%s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombre, _raza, _fecha_n, _sexo, _size))
             conn.commit()
-            response = jsonify(message='Mascota creada con exito.', id=cursor.lastrowid)
+            response = jsonify('Mascota creada con exito.')
             #response.data = cursor.lastrowid
             response.status_code = 200
         except Exception as e:
