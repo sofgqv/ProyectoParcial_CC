@@ -261,7 +261,7 @@ class Mascota(Resource):
 
 #API resource routes
 api.add_resource(AdoptarEstado, '/adoptarestado/<int:a_id>', endpoint='adoptarestado')
-api.add_resource(AdoptarVer, '/adoptar', endpoint='adoptarver')
+api.add_resource(AdoptarVer, '/adoptarver', endpoint='adoptarver')
 api.add_resource(Adoptar, '/adoptar/<int:m_id>', endpoint='adoptar')
 api.add_resource(Mascota, '/mascota/<int:m_id>', endpoint='mascota')
 api.add_resource(Mascotas, '/mascotas', endpoint='mascotas')
