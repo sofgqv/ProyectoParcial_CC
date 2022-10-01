@@ -71,8 +71,6 @@ export default {
                 'Access-Control-Allow-Origin': '*'}
             })
             .then(res => {
-                let i = this.mascotas.map(data => data.id).indexOf(mascota_id);
-                this.mascotas.splice(i, 1)
                 console.log(res)
             })
             .catch(err => {
