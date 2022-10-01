@@ -13,8 +13,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(donacion, i) in donaciones" :key="donacion.id">
-                <td>{{i + 1}}</td>
+                <tr v-for="donacion in donaciones" :key="donacion.id">
+                <td>{{donacion.id}}</td>
                 <td>{{donacion.nombres}}</td>
                 <td>{{donacion.apellidos}}</td>
                 <td>{{donacion.dni}}</td>
@@ -31,26 +31,25 @@
 import axios from 'axios';
 
 export default {
-  el: '#app',
-  data() {
-  return {
-      donaciones: '',
-      errors: []
-  }},
-  mounted(){
-      axios.get('http://34.230.89.209:8002/donaciones',
-      {headers: {  
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'}
-      })
-      .then(res => {
-          this.donaciones = res.data
-          console.log(res)
-      })
-      .catch(err => {
-          console.log(err)
-      })
-  }
+    el: '#app',
+    data() {
+    return {
+        donaciones: ''
+    }},
+    mounted(){
+        axios.get('http://34.230.89.209:8002/donaciones',
+        {headers: {  
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'}
+        })
+        .then(res => {
+            this.donaciones = res.data
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 }
 
 </script>
