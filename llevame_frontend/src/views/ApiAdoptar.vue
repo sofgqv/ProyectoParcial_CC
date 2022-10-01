@@ -9,7 +9,7 @@
     <div class="container" id="vuejscrudapp">
         <div class="row">
             <div class="col-md-12 mt-5">
-            <h1 class="text-center">Ser Voluntario</h1>
+            <h1 class="text-center">Adoptar</h1>
             <hr>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div>
                 <h4 id="show-btn" @click="showModal('my-modal')">¡No adoptes uno de raza, adopta uno sin casa!</h4>
     
-                <div ref="my-modal" hide-footer title="adopta">
+                <div ref="my-modal" hide-footer title="adoptar">
                 <div>
                     <form action="" @submit.prevent="onSubmit">
                     <div class="form-group">
@@ -47,10 +47,6 @@
                         <input type="text" v-model="correo" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="">ID de la mascota</label>
-                        <input type="int" v-model="mascota_id" class="form-control">
-                    </div>
-                    <div class="form-group">
                         <button class="btn btn-sm btn-outline-info">Solicitar adopción</button>
                     </div>
                     </form>
@@ -66,6 +62,12 @@
 import axios from 'axios';
 
 export default {
+  props: {
+    m_id: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       nombres: '',
@@ -74,13 +76,13 @@ export default {
       fecha_n: '',
       celular: '',
       correo: '',
-      mascota_id: '',
+      mascota_id: this.m_id,
       errors: []
     }},
   methods: {
     onSubmit(){
-      if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.fecha_n !== '' && this.celular !== '' && this.correo !== '' && this.mascota_id !== '') {
-        axios.post("",{
+      if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.fecha_n !== '' && this.celular !== '' && this.correo !== '') {
+        axios.post("http://54.87.191.172:8003/servoluntarios"+this.m_id ,{
           nombres : this.nombres,
           apellidos : this.apellidos,
           dni : this.dni,

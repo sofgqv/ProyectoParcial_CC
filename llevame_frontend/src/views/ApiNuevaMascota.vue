@@ -9,7 +9,7 @@
     <div class="container" id="vuejscrudapp">
         <div class="row">
             <div class="col-md-12 mt-5">
-            <h1 class="text-center">Mascotas</h1>
+            <h1 class="text-center">Nueva mascota</h1>
             <hr>
             </div>
         </div>
@@ -70,7 +70,7 @@ export default {
   methods: {
     onSubmit(){
       if (this.nombre !== '' && this.raza !== '' && this.fecha_n !== '' && this.sexo !== '' && this.size !== '') {
-        axios.post("",{
+        axios.post("http://54.87.191.172:8003/mascotasadd",{
           nombre : this.nombre,
           raza : this.raza,
           fecha_n : this.fecha_n,

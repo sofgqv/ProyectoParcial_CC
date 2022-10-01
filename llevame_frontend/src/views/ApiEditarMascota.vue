@@ -9,7 +9,7 @@
       <div class="container" id="vuejscrudapp">
           <div class="row">
               <div class="col-md-12 mt-5">
-              <h1 class="text-center">Donar</h1>
+              <h1 class="text-center">Editar mascota</h1>
               <hr>
               </div>
           </div>
@@ -17,33 +17,33 @@
               <div class="col-md-12">
               <!-- Add Records -->
               <div>
-                  <h4 id="show-btn" @click="showModal('my-modal')">¡Tu contribución es importante!</h4>
+                  <h4 id="show-btn" @click="showModal('my-modal')">Edita la mascota!</h4>
       
-                  <div ref="my-modal" hide-footer title="unete">
+                  <div ref="my-modal" hide-footer title="nueva mascota">
                   <div>
                       <form action="" @submit.prevent="onSubmit">
                       <div class="form-group">
-                          <label for="">Nombres</label>
-                          <input type="text" v-model="nombres" class="form-control">
+                          <label for="">Nombre</label>
+                          <input type="text" v-model="nombre" class="form-control">
                       </div>
                       <div class="form-group">
-                          <label for="">Apellidos</label>
-                          <input type="text" v-model="apellidos" class="form-control">
+                          <label for="">Raza</label>
+                          <input type="text" v-model="raza" class="form-control">
                       </div>
                       <div class="form-group">
-                          <label for="">DNI</label>
-                          <input type="text" length="8" v-model="dni" class="form-control">
+                          <label for="">Fecha de nacimiento</label>
+                          <input type="text" v-model="fecha_n" class="form-control">
                       </div>
                       <div class="form-group">
-                          <label for="">Correo</label>
-                          <input type="text" v-model="correo" class="form-control">
+                          <label for="">Sexo</label>
+                          <input type="text" v-model="sexo" class="form-control">
                       </div>
                       <div class="form-group">
-                          <label for="">Monto</label>
-                          <input type="int" v-model="monto" class="form-control">
+                          <label for="">Size</label>
+                          <input type="text" v-model="size" class="form-control">
                       </div>
                       <div class="form-group">
-                          <button class="btn btn-sm btn-outline-info">Donar</button>
+                          <button class="btn btn-sm btn-outline-info">Inscribirme</button>
                       </div>
                       </form>
                   </div>
@@ -58,24 +58,30 @@
   import axios from 'axios';
   
   export default {
+    props: {
+    m_id: {
+      type: String,
+      required: true,
+    },
+  },
     data() {
       return {
-        nombres: '',
-        apellidos: '',
-        dni: '',
-        correo: '',
-        monto: '',
+        nombre: '',
+        raza: '',
+        fecha_n: '',
+        sexo: '',
+        size: '',
         errors: []
       }},
     methods: {
       onSubmit(){
-        if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.correo !== '' && this.monto !== '') {
-          axios.post("http://54.87.191.172:8002/donaciones",{
-            nombres : this.nombres,
-            apellidos : this.apellidos,
-            dni : this.dni,
-            correo : this.correo,
-            monto : this.monto
+        if (this.nombre !== '' && this.raza !== '' && this.fecha_n !== '' && this.sexo !== '' && this.size !== '') {
+          axios.patch("http://54.87.191.172:8003/mascota"+this.m_id,{
+            nombre : this.nombre,
+            raza : this.raza,
+            fecha_n : this.fecha_n,
+            sexo : this.sexo,
+            size : this.size
           },
           {headers: {  
               'Content-Type': 'application/json',
@@ -83,13 +89,13 @@
           })
           .then(res => {
               console.log(res)
-              alert('¡Gracias por donar!')
+              alert('¡Mascota añadida!')
           })
           .catch(err => {
               console.log(err)
           })
         }else{
-          alert('Donación no procesada. Inténtalo nuevamente.')
+          alert('No se pudo añadir. Inténtalo nuevamente.')
         }
       }
     }

@@ -23,21 +23,26 @@
                 <td>{{mascota.size}}</td>
                 <td>{{mascota.estado_adop}}</td>
                 <td>
+                    <!--<div v-if="auth.authorized"></div>-->
                     <!--<router-link class="btn btn-success btn-sm" :to="{ name: 'EditarMascota', params: { mascotaId: mascota.id }}">Editar mascota</router-link>-->
                     <button class="btn btn-danger btn-sm" @click="eliminarMascota(mascota.id)">Eliminar</button>
                 </td>
                 <td>
+                    <router-link class="btn btn-success btn-sm" :to="{ name: 'ApiAdoptar', params: { mascotaId: mascota.id }}">Adoptar mascota</router-link>
                 </td>
             </tr>
             </tbody>
         </table>
+        </div>
+        <div class="nuevaMascota">
+            <router-link class="btn btn-success btn-sm" :to="{ name: 'ApiNuevaMascota'}">Nueva mascota</router-link>
         </div>
     </div>
 </template>
     
 <script>
 import axios from 'axios';
-
+//import { auth } from "@/LoginService";
 export default {
     el: '#app',
     data() {
@@ -45,7 +50,7 @@ export default {
         mascotas: ''
     }},
     mounted(){
-        axios.get('',
+        axios.get('http://54.87.191.172:8003/mascotas',
         {headers: {  
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'}

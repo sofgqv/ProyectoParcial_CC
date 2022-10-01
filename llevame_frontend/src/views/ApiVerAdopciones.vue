@@ -43,7 +43,7 @@ export default {
       voluntarios: ''
   }},
   mounted(){
-      axios.get('',
+      axios.get('http://54.87.191.172:8003/adoptar',
       {headers: {  
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*'}
