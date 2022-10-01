@@ -47,7 +47,7 @@ export default {
     el: '#app',
     data() {
     return {
-        mascotas: ''
+        mascotas: {}
     }},
     mounted(){
         axios.get('http://34.230.89.209:8003/mascotas',
@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         eliminarMascota(mascota_id) {
-            axios.delete('http://34.230.89.209:8003/mascota/${mascota_id}' ,
+            axios.delete('http://34.230.89.209:8003/mascota/' + mascota_id ,
             {headers: {  
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'}
