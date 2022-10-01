@@ -11,7 +11,6 @@
                 <th>FN</th>
                 <th>Celular</th>
                 <th>Actividad</th>
-                <th>Aceptado</th>
             </tr>
             </thead>
             <tbody>
@@ -23,7 +22,6 @@
                 <td>{{voluntario.fecha_n}}</td>
                 <td>{{voluntario.celular}}</td>
                 <td>{{voluntario.actividad}}</td>
-                <td>{{voluntario.aceptado}}</td>
             </tr>
             </tbody>
         </table>

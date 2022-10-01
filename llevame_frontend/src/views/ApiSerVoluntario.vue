@@ -1,20 +1,16 @@
 <template>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
   </head>
 
     <div class="container" id="vuejscrudapp">
         <div class="row">
-            <div class="col-md-12 mt-5">
-            <h1 class="text-center">Ser Voluntario</h1>
-            <hr>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+          <div class="col-md-3">
+          </div>
+            <div class="col-md-6">
             <!-- Add Records -->
             <div>
                 <h4 id="show-btn" @click="showModal('my-modal')">¡Únete a nosotros!</h4>
@@ -50,6 +46,7 @@
                             <option value="embajador">Ser embajador</option>
                           </select>
                     </div>
+                    <br>
                     <div class="form-group">
                         <button class="btn btn-sm btn-outline-info">Inscribirme</button>
                     </div>

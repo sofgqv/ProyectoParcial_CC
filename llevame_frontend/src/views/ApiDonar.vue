@@ -8,13 +8,9 @@
   
       <div class="container" id="vuejscrudapp">
           <div class="row">
-              <div class="col-md-12 mt-5">
-              <h1 class="text-center">Donar</h1>
-              <hr>
+              <div class="col-md-3">
               </div>
-          </div>
-          <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
               <!-- Add Records -->
               <div>
                   <h4 id="show-btn" @click="showModal('my-modal')">¡Tu contribución es importante!</h4>
@@ -42,6 +38,7 @@
                           <label for="">Monto</label>
                           <input type="int" v-model="monto" class="form-control">
                       </div>
+                      <br>
                       <div class="form-group">
                           <button class="btn btn-sm btn-outline-info">Donar</button>
                       </div>

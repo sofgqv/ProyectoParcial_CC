@@ -43,7 +43,7 @@ class Donaciones(Resource):
                 dictionary['correo'] = row[4]
                 dictionary['monto'] = row[5]
                 lista[row[0]] = dictionary
-            return jsonify({"a" : 1})
+            return jsonify(lista)
         except Exception as e:
             print(e)
         finally:
