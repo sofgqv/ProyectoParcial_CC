@@ -11,16 +11,16 @@ const routes = [
       ),
   },
   {
-    path: "/mascotas",
-    name: "ApiMascotas",
+    path: "/nuevamascota",
+    name: "ApiNuevaMascota",
     props: true,
     component: () =>
       import(
-        /* webpackChunkName: "SignUp" */ "../views/ApiMascotas.vue"
+        /* webpackChunkName: "SignUp" */ "../views/ApiNuevaMascota.vue"
       ),
   },
   {
-    path: "/adoptar",
+    path: "/adoptar/:m_id",
     name: "ApiAdoptar",
     props: true,
     component: () =>
@@ -30,12 +30,12 @@ const routes = [
   },
   {
     path: "/adopciones",
-    name: "ApiAdopciones",
+    name: "ApiVerAdopciones",
     //meta: { ifAuth: true },
     props: true,
     component: () =>
       import(
-        /* webpackChunkName: "SignUp" */ "../views/ApiAdopciones.vue"
+        /* webpackChunkName: "SignUp" */ "../views/ApiVerAdopciones.vue"
       ),
   },
   {
@@ -75,6 +75,25 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "SignUp" */ "../views/ApiVerVoluntarios.vue"
+      ),
+  },
+  {
+    path: "/mascotas",
+    name: "ApiVerMascotas",
+    //meta: { ifAuth: true },
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiVerMascotas.vue"
+      ),
+  },
+  {
+    path: "/editarmascota/:m_id",
+    name: "ApiEditarMascota",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SignUp" */ "../views/ApiEditarMascota.vue"
       ),
   },
 ];
