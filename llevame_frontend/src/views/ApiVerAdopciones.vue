@@ -37,7 +37,6 @@
 import axios from 'axios';
 
 export default {
-<<<<<<< Updated upstream
     el: '#app',
     data() {
     return {
@@ -57,27 +56,6 @@ export default {
             console.log(err)
         })
     }
-=======
-  el: '#app',
-  data() {
-  return {
-      adopciones: ''
-  }},
-  mounted(){
-      axios.get('http://34.230.89.209:8003/adoptar',
-      {headers: {  
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'}
-      })
-      .then(res => {
-          this.adopciones = res.data
-          console.log(res)
-      })
-      .catch(err => {
-          console.log(err)
-      })
-  }
->>>>>>> Stashed changes
 }
 
 </script>
