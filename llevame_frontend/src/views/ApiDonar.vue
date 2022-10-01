@@ -70,7 +70,7 @@
     methods: {
       onSubmit(){
         if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.correo !== '' && this.monto !== '') {
-          axios.post("http://54.87.191.172:8002/donaciones",{
+          axios.post("http://107.23.18.244:8002/donaciones",{
             nombres : this.nombres,
             apellidos : this.apellidos,
             dni : this.dni,

@@ -20,7 +20,7 @@ const routes = [
       ),
   },
   {
-    path: "/adoptar/:m_id",
+    path: "/adoptar/:new_mascota_id",
     name: "ApiAdoptar",
     props: true,
     component: () =>
@@ -88,7 +88,7 @@ const routes = [
       ),
   },
   {
-    path: "/editarmascota/:m_id",
+    path: "/editarmascota/:mascota_id",
     name: "ApiEditarMascota",
     props: true,
     component: () =>

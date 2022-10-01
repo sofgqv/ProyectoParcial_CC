@@ -63,7 +63,7 @@ import axios from 'axios';
 
 export default {
   props: {
-    m_id: {
+    new_mascota_id: {
       type: String,
       required: true,
     },
@@ -76,20 +76,19 @@ export default {
       fecha_n: '',
       celular: '',
       correo: '',
-      mascota_id: this.m_id,
       errors: []
     }},
   methods: {
     onSubmit(){
       if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.fecha_n !== '' && this.celular !== '' && this.correo !== '') {
-        axios.post("http://54.87.191.172:8003/adoptar/"+this.m_id ,{
+        axios.post("http://107.23.18.244:8003/adoptar" ,{
           nombres : this.nombres,
           apellidos : this.apellidos,
           dni : this.dni,
           fecha_n : this.fecha_n,
           celular : this.celular,
           correo : this.correo,
-          mascota_id : this.mascota_id,
+          mascota_id : this.new_mascota_id,
         },
         {headers: {  
             'Content-Type': 'application/json',

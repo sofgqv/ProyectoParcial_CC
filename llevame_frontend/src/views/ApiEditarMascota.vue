@@ -59,7 +59,7 @@
   
   export default {
     props: {
-    m_id: {
+    mascota_id: {
       type: String,
       required: true,
     },
@@ -76,7 +76,7 @@
     methods: {
       onSubmit(){
         if (this.nombre !== '' && this.raza !== '' && this.fecha_n !== '' && this.sexo !== '' && this.size !== '') {
-          axios.patch("http://54.87.191.172:8003/mascota"+this.m_id,{
+          axios.patch("http://107.23.18.244:8003/mascota"+this.mascota_id,{
             nombre : this.nombre,
             raza : this.raza,
             fecha_n : this.fecha_n,

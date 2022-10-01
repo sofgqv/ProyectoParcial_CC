@@ -43,7 +43,7 @@
                         <input type="text" v-model="size" class="form-control">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-sm btn-outline-info">Inscribirme</button>
+                        <button class="btn btn-sm btn-outline-info">Añadir</button>
                     </div>
                     </form>
                 </div>
@@ -70,7 +70,7 @@ export default {
   methods: {
     onSubmit(){
       if (this.nombre !== '' && this.raza !== '' && this.fecha_n !== '' && this.sexo !== '' && this.size !== '') {
-        axios.post("http://54.87.191.172:8003/mascotasadd",{
+        axios.post("http://107.23.18.244:8003/mascotasadd",{
           nombre : this.nombre,
           raza : this.raza,
           fecha_n : this.fecha_n,
