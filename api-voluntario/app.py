@@ -4,16 +4,10 @@ from flaskext.mysql import MySQL
 from flask_cors import CORS
 from flask_restful import Resource, Api
 
-#Create an instance of Flask
 app = Flask(__name__)
-
-#Create an instance of MySQL
 mysql = MySQL()
-
-#Create an instance of Flask RESTful API
 api = Api(app)
 
-#Set database credentials in config.
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'utec'
 app.config['MYSQL_DATABASE_DB'] = 'llevame_pe' #nombre base de datos
@@ -22,10 +16,8 @@ app.config['MYSQL_DATABASE_PORT'] = 8005
 
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-#Initialize the MySQL extension
 mysql.init_app(app)
 
-#Get All Users, or Create a new user
 class SerVoluntario(Resource):
     def get(self):
         try:

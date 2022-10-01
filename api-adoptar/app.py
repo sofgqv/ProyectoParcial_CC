@@ -65,11 +65,10 @@ class Adoptar(Resource):
             _fecha_n = body.get('fecha_n', None)
             _celular = body.get('celular', None)
             _correo = body.get('correo', None)
-            insert_user_cmd = """INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) 
-                                VALUES(%s, %s, %s, %s, %s, %s, %s)"""
+            insert_user_cmd = """INSERT INTO adoptar(nombres, apellidos, dni, fecha_n, celular, correo, mascota_id) VALUES(%s, %s, %s, %s, %s, %s, %s)"""
             cursor.execute(insert_user_cmd, (_nombres, _apellidos, _dni, _fecha_n, _celular, _correo, m_id))
             conn.commit()
-            response = jsonify(message='Peticion de adopcion creada con exito.', id=cursor.lastrowid)
+            response = jsonify('Peticion de adopcion creada con exito.')
             #response.data = cursor.lastrowid
             response.status_code = 200
         except Exception as e:
