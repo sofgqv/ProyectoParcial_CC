@@ -26,7 +26,7 @@
                 <td>{{adopcion.correo}}</td>
                 <td>{{adopcion.mascota_id}}</td>
                 <td>
-                    <input type="checkbox" v-model.number="adopcion.aceptado" @click="editarAceptado(adopcion.id, adopcion.aceptado)" :true-value=1 :false-value=0>
+                    <button class="btn btn-danger btn-sm" @click="editarAceptado(adopcion.id)"></button>
                 </td>
             </tr>
             </tbody>
@@ -59,9 +59,9 @@
             })
         },
         methods: {
-        editarAceptado(id, value) {
+        editarAceptado(id) {
             axios.patch('http://34.230.89.209:8003/adoptarestado/' + id ,{
-            aceptado : value
+            aceptado : 1
           },
             {headers: {  
                 'Content-Type': 'application/json',
