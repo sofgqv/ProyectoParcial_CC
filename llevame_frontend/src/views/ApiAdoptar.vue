@@ -14,7 +14,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+          <div class="col-md-3">
+          </div>
+            <div class="col-md-6">
             <!-- Add Records -->
             <div>
                 <h4 id="show-btn" @click="showModal('my-modal')">¡No adoptes uno de raza, adopta uno sin casa!</h4>
