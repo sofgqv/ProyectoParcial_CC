@@ -81,7 +81,7 @@ export default {
   methods: {
     onSubmit(){
       if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.fecha_n !== '' && this.celular !== '' && this.correo !== '') {
-        axios.post("http://34.230.89.209:8003/adoptar" ,{
+        axios.post("http://52.207.240.235:8003/adoptar" ,{
           nombres : this.nombres,
           apellidos : this.apellidos,
           dni : this.dni,

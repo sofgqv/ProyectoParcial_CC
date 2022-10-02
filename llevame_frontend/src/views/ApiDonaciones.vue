@@ -37,7 +37,7 @@ export default {
         donaciones: ''
     }},
     mounted(){
-        axios.get('http://34.230.89.209:8002/donaciones',
+        axios.get('http://52.207.240.235:8002/donaciones',
         {headers: {  
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'}
