@@ -50,7 +50,7 @@ export default {
         mascotas: {}
     }},
     mounted(){
-        axios.get('http://34.230.89.209:8003/mascotas',
+        axios.get('http://52.207.240.235:8003/mascotas',
         {headers: {  
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'}
