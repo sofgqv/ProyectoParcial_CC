@@ -1,6 +1,6 @@
 <template>
     <section id="home">
-        <img id="logo" alt="LlevamePe" src="../assets/adoptme.jpeg" height="700">
+        <img id="logo" alt="LlevamePe" src="../assets/adopt_me.jpeg" height="700">
         <div id="welcome">
             <div class="container">
                 <br>
@@ -38,19 +38,15 @@
 </template>
 
 <style>
-    #home {
+    #home section{
     background-color: #758395;
-    }
-    #home section .body {
-        display:table-row;
     }
     
     #logo {
-    border-radius: 100px;
-    border-spacing: 200px;
+    border-radius: 50px;
+    border-spacing: 100px;
     cursor: pointer;
     transition: 0.3s;
-    margin-top: 100px;
     }
 
     #logo:hover {opacity: 0.7;}
