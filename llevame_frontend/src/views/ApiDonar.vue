@@ -8,35 +8,42 @@
   
       <div class="container" id="vuejscrudapp">
           <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
+                <img src="https://i.pinimg.com/736x/b0/a9/f4/b0a9f4471b5b7feaed849ef7c5b5510a.jpg" style="float:right;width:617px">
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
               <!-- Add Records -->
               <div>
+                <br>
                   <h4 id="show-btn" @click="showModal('my-modal')">¡Tu contribución es importante!</h4>
-      
+                  <br>
                   <div ref="my-modal" hide-footer title="unete">
                   <div>
                       <form action="" @submit.prevent="onSubmit">
                       <div class="form-group">
                           <label for="">Nombres</label>
                           <input type="text" v-model="nombres" class="form-control">
+                          <br>
                       </div>
                       <div class="form-group">
                           <label for="">Apellidos</label>
                           <input type="text" v-model="apellidos" class="form-control">
+                          <br>
                       </div>
                       <div class="form-group">
                           <label for="">DNI</label>
                           <input type="text" length="8" v-model="dni" class="form-control">
+                          <br>
                       </div>
                       <div class="form-group">
                           <label for="">Correo</label>
                           <input type="text" v-model="correo" class="form-control">
+                          <br>
                       </div>
                       <div class="form-group">
                           <label for="">Monto</label>
                           <input type="int" v-model="monto" class="form-control">
+                          <br>
                       </div>
                       <br>
                       <div class="form-group">
@@ -46,6 +53,9 @@
                   </div>
                 </div>
               </div>
+          </div>
+          <div class="col-md-4">
+            <img src="https://i.pinimg.com/736x/b0/a9/f4/b0a9f4471b5b7feaed849ef7c5b5510a.jpg" style="float:left;width:617px">
           </div>
       </div>
   </div>

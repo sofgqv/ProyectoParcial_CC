@@ -13,6 +13,7 @@
             <div class="col-md-6">
             <!-- Add Records -->
             <div>
+              <br>
                 <h4 id="show-btn" @click="showModal('my-modal')">¡Únete a nosotros!</h4>
     
                 <div ref="my-modal" hide-footer title="unete">
