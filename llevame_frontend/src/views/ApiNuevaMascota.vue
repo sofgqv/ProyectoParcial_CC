@@ -57,6 +57,7 @@
 </template>
     
 <script>
+import router from "@/router";
 import axios from 'axios';
 
 export default {
@@ -86,6 +87,7 @@ export default {
         .then(res => {
             console.log(res)
             alert('¡Mascota añadida!')
+            router.push("/mascotas");
         })
         .catch(err => {
             console.log(err)

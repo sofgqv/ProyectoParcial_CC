@@ -41,6 +41,7 @@
 </template>
     
 <script>
+import router from "@/router";
 import axios from 'axios';
 //import { auth } from "@/LoginService";
 export default {
@@ -72,6 +73,7 @@ export default {
             })
             .then(res => {
                 console.log(res)
+                router.push("/");
             })
             .catch(err => {
                 console.log(err)
