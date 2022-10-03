@@ -125,6 +125,20 @@ lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascotasadd
 
 lb-prod-632583897.us-east-1.elb.amazonaws.com:8004/admin
 
-
-
 # Vue.js Build App
+
+docker build -t llevame_frontend .
+
+docker run -it -p 8080:8080 --rm --name llevame_frontend_c llevame_frontend
+
+docker tag llevame_frontend sofiagarcia/llevame_frontend
+
+docker push sofiagarcia/llevame_frontend
+
+# docker-compose final
+
+docker-compose build
+
+docker-compose up
+
+docker-compose down
