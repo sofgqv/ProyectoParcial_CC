@@ -70,17 +70,12 @@ export default {
 <style>
 nav {
   padding: 30px;
-  background-color: #ffee00;
 }
 nav a {
   font-weight: bold;
-  color: #293a4a;
+  color: #2c3e50;
 }
 nav a.router-link-exact-active {
-  color: #ff0000;
+  color: #42b983;
 }
-div {
-  color: #ffee00;
-}
-
 </style>
