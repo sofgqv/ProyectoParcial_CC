@@ -8,10 +8,9 @@
   
       <div class="container" id="vuejscrudapp">
           <div class="row">
-              <div class="col-md-4">
-                <img src="https://i.pinimg.com/736x/b0/a9/f4/b0a9f4471b5b7feaed849ef7c5b5510a.jpg" style="float:right;width:617px">
+              <div class="col-md-3">
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
               <!-- Add Records -->
               <div>
                 <br>
@@ -54,8 +53,7 @@
                 </div>
               </div>
           </div>
-          <div class="col-md-4">
-            <img src="https://i.pinimg.com/736x/b0/a9/f4/b0a9f4471b5b7feaed849ef7c5b5510a.jpg" style="float:left;width:617px">
+          <div class="col-md-3">
           </div>
       </div>
   </div>
