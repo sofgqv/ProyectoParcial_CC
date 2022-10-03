@@ -76,7 +76,7 @@
     methods: {
       onSubmit(){
         if (this.nombre !== '' && this.raza !== '' && this.fecha_n !== '' && this.sexo !== '' && this.size !== '') {
-          axios.patch("http://52.207.240.235:8003/mascota"+this.mascota_id,{
+          axios.patch("http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascota"+this.mascota_id,{
             nombre : this.nombre,
             raza : this.raza,
             fecha_n : this.fecha_n,

@@ -45,7 +45,7 @@
             adopciones: ''
         }},
         mounted(){
-            axios.get('http://52.207.240.235:8003/adoptar',
+            axios.get('http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/adoptar',
             {headers: {  
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'}
@@ -60,7 +60,7 @@
         },
         methods: {
         editarAceptado(id) {
-            axios.patch('http://52.207.240.235:8003/adoptarestado/' + id ,{
+            axios.patch('http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/adoptarestado/' + id ,{
             aceptado : 1
           },
             {headers: {  

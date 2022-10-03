@@ -39,7 +39,7 @@ export default {
         voluntarios: ''
     }},
     mounted(){
-        axios.get('http://52.207.240.235:8001/servoluntario',
+        axios.get('http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8001/servoluntario',
         {headers: {  
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'}

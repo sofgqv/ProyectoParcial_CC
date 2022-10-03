@@ -73,7 +73,7 @@ export default {
   methods: {
     onSubmit(){
       if (this.nombre !== '' && this.raza !== '' && this.fecha_n !== '' && this.sexo !== '' && this.size !== '') {
-        axios.post("http://52.207.240.235:8003/mascotasadd",{
+        axios.post("http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascotasadd",{
           nombre : this.nombre,
           raza : this.raza,
           fecha_n : this.fecha_n,

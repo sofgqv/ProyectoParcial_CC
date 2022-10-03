@@ -51,7 +51,7 @@ export default {
         mascotas: {}
     }},
     mounted(){
-        axios.get('http://52.207.240.235:8003/mascotas',
+        axios.get('http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascotas',
         {headers: {  
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'}
@@ -66,7 +66,7 @@ export default {
     },
     methods: {
         eliminarMascota(mascota_id) {
-            axios.delete('http://52.207.240.235:8003/mascota/' + mascota_id ,
+            axios.delete('http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8003/mascota/' + mascota_id ,
             {headers: {  
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'}

@@ -75,7 +75,7 @@ export default {
   methods: {
     onSubmit(){
       if (this.nombres !== '' && this.apellidos !== '' && this.dni !== '' && this.correo !== '' && this.monto !== '') {
-        axios.post("http://52.207.240.235:8002/donar",{
+        axios.post("http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8002/donar",{
           nombres : this.nombres,
           apellidos : this.apellidos,
           dni : this.dni,

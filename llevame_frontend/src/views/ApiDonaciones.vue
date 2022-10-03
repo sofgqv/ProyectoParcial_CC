@@ -37,7 +37,7 @@ export default {
         donaciones: ''
     }},
     mounted(){
-        axios.get('http://52.207.240.235:8002/donaciones',
+        axios.get('http://lb-prod-632583897.us-east-1.elb.amazonaws.com:8002/donaciones',
         {headers: {  
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'}
