@@ -1,75 +1,50 @@
 <template>
-    <section id="hero">
-    <div class="principal">
-    <img id="logo" alt="LlevamePe logo" src="../assets/adoptme.jpeg" height="400">
-    </div>
-    <div id = "welcome">
-      <h3>¡Bienvenidos a <strong>LlevamePe!</strong></h3>
-      <h1>Somos una organización de ayuda a perros y gatos, facilitando la adopción, donación y ejecución de voluntariados.</h1>
-      <h2>Somos un equipo de estudiantes de UTEC comprometidos con los animales.</h2>
-    </div>
-  </section>
-  <section id = "animales">
-    <h4>¡Últimos animales <strong>adoptados!</strong></h4>
-    <div id="box">
-        <div class="container">
-            <img src="i../assets/gato1.jpeg" class="image" style="width:100%">
-            <div class="middle">
-                <div class="text">Chino</div>
+    <section id="home">
+        <img id="logo" alt="LlevamePe" src="../assets/adoptme.jpeg" height="700">
+        <div id="welcome">
+            <div class="container">
+                <br>
+                <h2>¡Bienvenidos a <strong>LlevamePe!</strong></h2>
+                <br>
+            <h1>Somos una organización de ayuda a perros y gatos, facilitando la adopción, donación y ejecución de voluntariados.</h1>
+                <h2>Estamos conformador por un equipo de estudiantes de UTEC comprometidos con los animales.</h2>
+                <br>
             </div>
         </div>
-        <div class="container">
-            <img src="i../assets/gato2.jpeg" class="image" style="width:100%">
-            <div class="middle">
-                <div class="text">Meche</div>
+  <section id="animales">
+    <br>
+    <h4>¡Últimos animales <strong>adoptados y sus dueños!</strong></h4>
+
+    <div class="row">
+        <div class="column">
+            <img src="../assets/gato1.jpeg" style="width:100%">
+            <div class="text">Chino</div>
         </div>
+        <div class="column">
+            <img src="../assets/harold_pic.jpg" style="width:100%">
+            <div class="text">Harold</div>
         </div>
-    </div>
+        <div class="column">
+            <img src="../assets/gato2.jpeg" style="width:100%">
+            <div class="text">Meche</div>
+        </div>
+        <div class="column">
+            <img src="../assets/marvinskynaruto.jpeg" style="width:100%">
+            <div class="text">Marvin</div>
+          </div>
+      </div>
   </section>
-  <section id = "donadores">
-    <h4>¡Nuestro más fieles <strong>donadores!</strong></h4>
-    <div id="box">
-        <div class="container">
-            <img src="i../assets/harold.jpeg" class="image" style="width:100%">
-            <div class="middle">
-                <div class="text">Harold Colchado</div>
-            </div>
-        </div>
-        <div class="container">
-            <img src="i../assets/marvinskynaruto.png" class="image" style="width:100%">
-            <div class="middle">
-                <div class="text">Marvinsky</div>
-            </div>
-        </div>
-    </div>
-  </section>
+</section>
 </template>
 
 <style>
-    section {
-    background-color: #000000;
+    #home {
+    background-color: #758395;
     }
-    section .body {
+    #home section .body {
         display:table-row;
     }
-    h3 {
-        font-family: 'Asap', sans-serif;
-        color: #f8f9ff;
-        font-size: 50px;
-        margin-top: 20px;
-    }
-    h1,h2 {
-        font-family: "Courier New", monospace;
-        color: #f8f9ff;
-        font-size: 24px;
-        margin-top: 20px;
-    }
-    h4 {
-        font-family: 'Asap', sans-serif;
-        color: #f8f9ff;
-        font-size: 40px;
-        margin-top: 20px;
-    }
+    
     #logo {
     border-radius: 100px;
     border-spacing: 200px;
@@ -81,11 +56,10 @@
     #logo:hover {opacity: 0.7;}
 
     /* The Modal (background) */
-    .modal {
+    #home .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -95,15 +69,12 @@
     background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
     }
 
+    #animales h4 {
+        color: white
+    }
+
     #welcome {
     background-image: none;
-    margin-top: 100px;
-    }
-    .container {
-    position: relative;
-    width: 20%;
-    padding: 10px 20px;
-    display:table-cell;
     }
 
     .image {
@@ -115,7 +86,7 @@
     backface-visibility: hidden;
     }
 
-    .middle {
+    #home .middle {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
@@ -126,27 +97,29 @@
     }
 
     .container:hover .image {
-    opacity: 0.3;
+    opacity: 0.7;
     }
 
     .container:hover .middle {
     opacity: 1;
     }
 
-    .text {
-    background-color: #ff0000;
+    #home .text {
+    background-color: #45445b;
     color: white;
     font-size: 16px;
     padding: 16px 32px;
     }
 
-    #animales {
-        margin-top: 100px;
-    }
-    #box {
-        display:table-row;
-    }
-    #donadores, #animales {
+    #animales .column {
+        float: left;
+        width: 25%;
+        padding: 5px;
+      }
+      
+    #animales .row::after {
+        content: "";
+        clear: both;
         display: table;
     }
 </style>
