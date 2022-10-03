@@ -11,37 +11,37 @@
   </section>
   <section id = "animales">
     <h4>¡Últimos animales <strong>adoptados!</strong></h4>
-    <body>
-    <div class="container">
-        <img src="i../assets/gato1.jpeg" class="image" style="width:100%">
-        <div class="middle">
-            <div class="text">Chino</div>
+    <div id="box">
+        <div class="container">
+            <img src="i../assets/gato1.jpeg" class="image" style="width:100%">
+            <div class="middle">
+                <div class="text">Chino</div>
+            </div>
+        </div>
+        <div class="container">
+            <img src="i../assets/gato2.jpeg" class="image" style="width:100%">
+            <div class="middle">
+                <div class="text">Meche</div>
+        </div>
         </div>
     </div>
-    <div class="container">
-        <img src="i../assets/gato2.jpeg" class="image" style="width:100%">
-        <div class="middle">
-            <div class="text">Meche</div>
-    </div>
-    </div>
-    </body>
   </section>
   <section id = "donadores">
     <h4>¡Nuestro más fieles <strong>donadores!</strong></h4>
-    <body>
-    <div class="container">
-        <img src="i../assets/harold.jpeg" class="image" style="width:100%">
-        <div class="middle">
-            <div class="text">Harold Colchado</div>
+    <div id="box">
+        <div class="container">
+            <img src="i../assets/harold.jpeg" class="image" style="width:100%">
+            <div class="middle">
+                <div class="text">Harold Colchado</div>
+            </div>
+        </div>
+        <div class="container">
+            <img src="i../assets/marvinskynaruto.png" class="image" style="width:100%">
+            <div class="middle">
+                <div class="text">Marvinsky</div>
+            </div>
         </div>
     </div>
-    <div class="container">
-        <img src="i../assets/marvinskynaruto.png" class="image" style="width:100%">
-        <div class="middle">
-            <div class="text">Marvinsky</div>
-    </div>
-    </div>
-    </body>
   </section>
 </template>
 
@@ -101,13 +101,15 @@
     }
     .container {
     position: relative;
-    width: 30%;
+    width: 20%;
+    padding: 10px 20px;
+    display:table-cell;
     }
 
     .image {
     opacity: 1;
     display: block;
-    width: 100%;
+    width: 50%;
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
@@ -140,5 +142,11 @@
 
     #animales {
         margin-top: 100px;
+    }
+    #box {
+        display:table-row;
+    }
+    #donadores, #animales {
+        display: table;
     }
 </style>
