@@ -1,30 +1,17 @@
 services:
-  frontend:
-    image: sofiagarcia/llevame_frontend
-    ports:
-      - "8080:8080"
-    configs:
-      - httpd-config
-    depends_on:
-      - donar-api
-      - voluntario-api
-      - adoptar-api
-
   voluntario-api:
     image: valdlaw/api-voluntario
     ports:
-    - "8001:8001"
-
+      - "8001:8001"
   donar-api:
     image: valdlaw/api-donar
     ports:
-    - "8002:8002"
-  
+      - "8002:8002"
   adoptar-api:
     image: valdlaw/api-adoptar
     ports:
-    - "8003:8003"
-
-configs:
-  httpd-config:
-    external: true
+      - "8003:8003"
+  frontend:
+    image: sofiagarcia/api-adoptar
+    ports:
+      - "8080:8080"
