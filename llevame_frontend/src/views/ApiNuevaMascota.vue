@@ -41,7 +41,7 @@
                         <input type="text" v-model="sexo" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="">Size</label>
+                        <label for="">Tamaño</label>
                         <input type="text" v-model="size" class="form-control">
                     </div>
                     <div class="form-group">

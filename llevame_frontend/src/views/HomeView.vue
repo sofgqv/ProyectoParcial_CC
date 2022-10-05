@@ -4,16 +4,15 @@
         <div id="welcome">
             <div class="container">
                 <br>
-                <h2>¡Bienvenidos a <strong>LlevamePe!</strong></h2>
-                <br>
-            <h1>Somos una organización de ayuda a perros y gatos, facilitando la adopción, donación y ejecución de voluntariados.</h1>
-                <h2>Estamos conformador por un equipo de estudiantes de UTEC comprometidos con los animales.</h2>
+                <h2>¡Bienvenid@ a <strong>LlevamePe!</strong></h2>
+            <h3>Somos una organización de ayuda a perros y gatos, facilitando la adopción, donación y ejecución de voluntariados.</h3>
+            <br>
                 <br>
             </div>
         </div>
   <section id="animales">
-    <br>
-    <h4>¡Últimos animales <strong>adoptados y sus dueños!</strong></h4>
+    <br><br>
+    <h4>¡Últimos animales <strong>adoptados y sus dueños!</strong></h4><br>
 
     <div class="row">
         <div class="column">
